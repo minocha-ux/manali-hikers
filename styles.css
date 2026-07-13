@@ -104,18 +104,20 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.01em;
   color: var(--cream);
   text-decoration: none;
+  text-shadow: 0 1px 10px rgba(0,0,0,0.4);
   transition: color 0.45s var(--ease);
 }
 .nav-logo .mark { color: var(--gold); font-style: italic; }
-.nav.scrolled .nav-logo { color: var(--cream); }
+.nav.scrolled .nav-logo { color: var(--cream); text-shadow: none; }
 .nav-links { display: flex; align-items: center; gap: 34px; }
 .nav-links a {
   font-size: 13.5px; font-weight: 600; letter-spacing: 0.02em;
   color: rgba(245,242,235,0.8); text-decoration: none;
+  text-shadow: 0 1px 10px rgba(0,0,0,0.4);
   transition: color 0.3s var(--ease);
 }
 .nav-links a:hover { color: var(--gold); }
-.nav.scrolled .nav-links a { color: rgba(245,242,235,0.85); }
+.nav.scrolled .nav-links a { color: rgba(245,242,235,0.85); text-shadow: none; }
 .nav.scrolled .nav-links a:hover { color: var(--gold); }
 .nav-cta {
   font-size: 13px !important; font-weight: 700 !important;
@@ -159,27 +161,31 @@ img { max-width: 100%; display: block; }
 .hero-scrim {
   position: absolute; inset: 0; z-index: 1;
   background:
-    linear-gradient(180deg, rgba(11,18,14,0.55) 0%, rgba(11,18,14,0.05) 35%, rgba(11,18,14,0.75) 100%);
+    linear-gradient(180deg, rgba(11,18,14,0.4) 0%, rgba(11,18,14,0.28) 22%, rgba(11,18,14,0.5) 48%, rgba(11,18,14,0.88) 100%);
 }
 .hero-inner { position: relative; z-index: 2; width: 100%; padding-bottom: clamp(56px, 8vw, 96px); }
 .hero-eyebrow {
   font-size: 12px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
   color: var(--gold); margin-bottom: 24px;
+  text-shadow: 0 1px 16px rgba(0,0,0,0.55), 0 1px 3px rgba(0,0,0,0.6);
 }
 .hero h1 {
   font-size: clamp(40px, 6.4vw, 88px); line-height: 1.02;
   max-width: 15ch; margin-bottom: 26px;
+  text-shadow: 0 4px 30px rgba(0,0,0,0.5), 0 1px 4px rgba(0,0,0,0.55);
 }
 .hero h1 em { color: #f0dcae; }
 .hero-sub {
   font-size: clamp(16px, 1.6vw, 19px); max-width: 54ch;
-  color: rgba(244,239,230,0.86); margin-bottom: 38px; line-height: 1.7;
+  color: rgba(244,239,230,0.92); margin-bottom: 38px; line-height: 1.7;
+  text-shadow: 0 1px 16px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.55);
 }
 .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
 .hero-meta {
   position: absolute; z-index: 2; top: 130px; right: 40px;
   writing-mode: vertical-rl; font-size: 12px; letter-spacing: 0.22em;
-  text-transform: uppercase; color: rgba(244,239,230,0.65);
+  text-transform: uppercase; color: rgba(244,239,230,0.75);
+  text-shadow: 0 1px 10px rgba(0,0,0,0.5);
 }
 
 /* ============================================================
