@@ -27,8 +27,10 @@ const lineage = [
   {
     era: '1998–present · Manali Hikers',
     name: 'Manoj Kumar — Founder',
-    pass: 'ABVIMAS certified · 10 summits, 6,000–6,500m',
-    story: 'Grew up in that same family, trekked those same routes for years, then founded Manali Hikers in 1998. Added formal ABVIMAS Advanced and Method-of-Instruction training to the family\'s inherited knowledge, and has since summited ten peaks between 6,000 and 6,500 metres — training every guide on the team to that standard.',
+    // Basic Mountaineering Course isn't named on the real site — only Advanced + MOI are confirmed —
+    // so it's flagged as a draft assumption (standard ABVIMAS prerequisite) pending confirmation.
+    pass: '<span class="draft-flag-inline">Basic Mountaineering Course</span> → Advanced Mountaineering Course → Method of Instruction (MOI), ABVIMAS',
+    story: 'Grew up in that same family, trekked those same routes for years, then founded Manali Hikers in 1998. Trained through ABVIMAS — from the foundations up to Advanced and Method-of-Instruction level — and has since summited ten peaks between 6,000 and 6,500 metres, training every guide on the team to that same standard.',
     link: 'See our routes →',
     img: 'Photos/manoj-about-us-real.jpg'
   }
@@ -72,7 +74,7 @@ function selectGen(i) {
   const g = lineage[i];
   document.getElementById('dEra').textContent = g.era;
   document.getElementById('dName').textContent = g.name;
-  document.getElementById('dPass').textContent = g.pass;
+  document.getElementById('dPass').innerHTML = g.pass;
   document.getElementById('dStory').textContent = g.story;
   const link = document.getElementById('dLink');
   link.textContent = g.link;
