@@ -2,46 +2,42 @@
    Manali Hikers — interactions
    ============================================================ */
 
-/* ---------- Data: the four-generation lineage ---------- */
+/* ---------- Data: the family lineage ----------
+   Only confirmed facts from the real site are used here. The original
+   manalihikers.com "About Us" text names no specific ancestor, pass, or
+   decade beyond "ancestors" and "my father" — so this stays a 3-step
+   timeline instead of inventing names/eras for a 4th generation. */
 const lineage = [
   {
-    era: '1930s–1950s · Nomadic era',
-    name: 'The great-grandfather',
-    pass: 'Bara Bhangal — first crossings',
-    story: 'Moved the family\'s herds between valleys with the seasons — among the first Khampa to cross the high passes into Bara Bhangal on foot, decades before any of it appeared on a trekking map.',
-    link: 'Walk the Bara Bhangal Shepherds’ Trail →',
+    era: 'Generations past · Nomadic era',
+    name: 'The Khampa ancestors',
+    pass: 'Across the Himalaya, unnamed passes',
+    story: 'Manoj\'s family were Khampa — Buddhist nomadic herders who moved with the seasons across the Himalaya with their cattle, and in doing so traced a great number of the trek routes still walked today.',
+    link: 'Read our full story →',
     img: 'Photos/IMG_1706.jpeg'
   },
   {
-    era: '1950s–1970s · Settlement era',
-    name: 'The grandfather',
-    pass: 'Chanderkhani Pass · Malana',
-    story: 'As nomadic movement gave way to settled village life, he kept the route knowledge of Chanderkhani and the old Malana crossings alive — passing it on rather than letting it fade with the lifestyle.',
-    link: 'See the Malana & Chanderkhani route →',
-    img: 'Photos/IMG_1030.jpeg'
-  },
-  {
-    era: '1970s–1990s · Early guiding',
-    name: 'Manoj’s father',
-    pass: 'Hamta Pass · Shaminala, Jagatsukh',
-    story: 'Settled the family at Shaminala near Jagatsukh and guided some of the earliest trekking parties to reach Manali — turning a family’s nomadic route knowledge into the first proper guided crossings of Hamta.',
-    link: 'Cross Hamta Pass →',
+    era: 'Manoj\'s father · Early guiding',
+    name: 'Manoj\'s father',
+    pass: 'Shaminala, near Jagatsukh',
+    story: 'Rather than continue the nomadic life, he settled the family at Shaminala near Jagatsukh in the Kullu valley, and began guiding treks on the routes the family already knew — turning inherited knowledge into a livelihood.',
+    link: 'See our home base →',
     img: 'Photos/94462484-3a39-4c2a-9d94-ccd61cb1b56b.jpg'
   },
   {
     era: '1998–present · Manali Hikers',
-    name: 'Manoj Kumar',
-    pass: 'Deo Tibba · 6,001m',
-    story: 'Founded Manali Hikers in 1998 and added formal ABVIMAS technical training to the family’s inherited trail knowledge. Has since summited ten peaks between 6,000 and 6,500 metres, and trains every guide to that standard.',
-    link: 'Join the Deo Tibba expedition →',
-    img: 'Photos/IMG_2357.jpeg'
+    name: 'Manoj Kumar — Founder',
+    pass: 'ABVIMAS certified · 10 summits, 6,000–6,500m',
+    story: 'Grew up in that same family, trekked those same routes for years, then founded Manali Hikers in 1998. Added formal ABVIMAS Advanced and Method-of-Instruction training to the family\'s inherited knowledge, and has since summited ten peaks between 6,000 and 6,500 metres — training every guide on the team to that standard.',
+    link: 'See our routes →',
+    img: 'Photos/manoj-about-us-real.jpg'
   }
 ];
 
 /* ---------- Data: curated signature routes ---------- */
 const routes = [
   { name: 'Bara Bhangal Shepherds’ Trail', region: 'Himachal', diff: 'Challenging', heritage: true,
-    duration: '11 days', alt: '4,878m', img: 'Photos/da4e15aa-46b5-4ff6-b1f0-dddf75415c0b.jpg' },
+    duration: '12 days', alt: '4,878m', img: 'Photos/da4e15aa-46b5-4ff6-b1f0-dddf75415c0b.jpg' },
   { name: 'Hamta Pass Crossing', region: 'Himachal', diff: 'Moderate', heritage: true,
     duration: '5 days', alt: '4,270m', img: 'Photos/94462484-3a39-4c2a-9d94-ccd61cb1b56b.jpg' },
   { name: 'Markha Valley', region: 'Ladakh', diff: 'Moderate', heritage: false,
@@ -56,7 +52,7 @@ const routes = [
 
 /* ---------- Build the timeline ---------- */
 const track = document.getElementById('track');
-let activeGen = 3;
+let activeGen = 2;
 
 lineage.forEach((g, i) => {
   const el = document.createElement('div');
@@ -143,7 +139,7 @@ const mapLocations = {
   manali: {
     name: "Manali Base (Shaminala)",
     coords: "32.2396° N, 77.1887° E",
-    desc: "The main headquarters of Manali Hikers. Our equipment depot, logistics center, and guide headquarters are based in Shaminala near Jagatsukh."
+    desc: "Our home base at Shaminala, near Jagatsukh in the Kullu Valley — where the family has guided from for generations."
   },
   rohtang: {
     name: "Rohtang Pass",
