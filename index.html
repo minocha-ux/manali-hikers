@@ -39,7 +39,7 @@
       <img src="Photos/IMG_3215.jpeg" alt="Golden sunrise peaks over flowery meadows of Manali" />
     </div>
     <div class="hero-scrim"></div>
-    <span class="hero-meta">Est. 1998 · Manali, Himachal Pradesh</span>
+    <span class="hero-meta">Est. 1998 · Manali, Himachal Pradesh · 32.2396° N, 77.1887° E</span>
     <div class="hero-inner">
       <div class="wrap">
         <p class="hero-eyebrow reveal">A four-generation Khampa nomad legacy</p>
@@ -133,6 +133,148 @@
     </div>
   </section>
 
+  <!-- ===================== ADVENTURE MAP & STATUS ===================== -->
+  <section class="adventure-map-section section-pad" id="adventure-map">
+    <div class="topography-overlay"></div>
+    <div class="wrap">
+      <div class="adventure-grid">
+        <!-- Left Column: Live Status Log -->
+        <div class="status-log reveal">
+          <p class="eyebrow">Real-time Conditions</p>
+          <h2>Live Trail Status Log</h2>
+          <p class="status-intro">Himalayan weather and pass accessibility updated live by our guides in the field.</p>
+          <div class="status-list">
+            <div class="status-card">
+              <div class="status-card-header">
+                <span class="status-date">OCT 24</span>
+                <h4>Hamta Pass</h4>
+                <span class="status-badge status-open">✓ OPEN</span>
+              </div>
+              <p class="status-desc">Snow clear. Good trail visibility across the pass.</p>
+              <div class="status-meter"><div class="status-fill" style="width: 90%"></div></div>
+              <span class="status-meta">90% Accessible · Clear weather</span>
+            </div>
+            <div class="status-card">
+              <div class="status-card-header">
+                <span class="status-date">OCT 23</span>
+                <h4>Spiti Valley (Pin Parvati)</h4>
+                <span class="status-badge status-open">✓ OPEN</span>
+              </div>
+              <p class="status-desc">Stable alpine weather. Water levels in river crossings are manageable.</p>
+              <div class="status-meter"><div class="status-fill" style="width: 75%"></div></div>
+              <span class="status-meta">75% Accessible · River crossings clear</span>
+            </div>
+            <div class="status-card">
+              <div class="status-card-header">
+                <span class="status-date">OCT 22</span>
+                <h4>Rohtang Pass</h4>
+                <span class="status-badge status-closed">✗ CLOSED</span>
+              </div>
+              <p class="status-desc">Heavy early winter snow accumulation. High winds over the ridge.</p>
+              <div class="status-meter"><div class="status-fill" style="width: 40%"></div></div>
+              <span class="status-meta">40% Accessible · High snow/Ice</span>
+            </div>
+            <div class="status-card">
+              <div class="status-card-header">
+                <span class="status-date">OCT 21</span>
+                <h4>Manali-Leh Highway</h4>
+                <span class="status-badge status-limited">▲ LIMITED</span>
+              </div>
+              <p class="status-desc">Highway open with minor road blockages due to recent landslide debris near Baralacha La.</p>
+              <div class="status-meter"><div class="status-fill" style="width: 60%"></div></div>
+              <span class="status-meta">60% Accessible · Debris maintenance</span>
+            </div>
+            <div class="status-card">
+              <div class="status-card-header">
+                <span class="status-date">OCT 20</span>
+                <h4>Markha Valley Trek</h4>
+                <span class="status-badge status-open">✓ OPEN</span>
+              </div>
+              <p class="status-desc">Dry, cold Ladakh conditions. Trail and tea houses fully operational.</p>
+              <div class="status-meter"><div class="status-fill" style="width: 85%"></div></div>
+              <span class="status-meta">85% Accessible · Clear skies</span>
+            </div>
+          </div>
+        </div>
+        <!-- Right Column: Interactive Vector Map -->
+        <div class="map-visual reveal">
+          <div class="map-header">
+            <span class="eyebrow">Himachal & Ladakh</span>
+            <h3>Adventure Route Map</h3>
+          </div>
+          <div class="map-container">
+            <!-- Topographical vector line map -->
+            <svg viewBox="0 0 800 650" class="vector-map" id="vectorMap">
+              <!-- Paths/Routes connecting pins -->
+              <g class="map-paths">
+                <!-- Kullu to Manali -->
+                <path d="M 220 540 Q 210 480, 240 430" class="map-route-line active" />
+                <!-- Manali to Rohtang Pass -->
+                <path d="M 240 430 Q 230 380, 280 340" class="map-route-line active" />
+                <!-- Rohtang to Kaza (Spiti) -->
+                <path d="M 280 340 Q 340 370, 420 400" class="map-route-line active" />
+                <!-- Rohtang to Lahaul Valley / Keylong -->
+                <path d="M 280 340 Q 250 280, 310 260" class="map-route-line active" />
+                <!-- Lahaul to Baralacha La -->
+                <path d="M 310 260 Q 360 210, 440 210" class="map-route-line active" />
+                <!-- Baralacha La to Lachulung La -->
+                <path d="M 440 210 Q 500 170, 560 200" class="map-route-line active" />
+                <!-- Lachulung La to Tanglang La -->
+                <path d="M 560 200 Q 610 150, 620 120" class="map-route-line active" />
+                <!-- Tanglang La to Leh -->
+                <path d="M 620 120 Q 650 90, 640 50" class="map-route-line active" />
+              </g>
+              <!-- Pins and Labels -->
+              <g class="map-pins">
+                <!-- Kullu Valley -->
+                <g class="map-pin" data-loc="kullu">
+                  <circle cx="220" cy="540" r="7" />
+                  <text x="220" y="565" text-anchor="middle">Kullu Valley</text>
+                </g>
+                <!-- Manali -->
+                <g class="map-pin active" data-loc="manali">
+                  <circle cx="240" cy="430" r="9" class="pulsing-pin" />
+                  <text x="215" y="435" text-anchor="end">Manali Base</text>
+                </g>
+                <!-- Rohtang Pass -->
+                <g class="map-pin" data-loc="rohtang">
+                  <polygon points="275,345 280,335 285,345" />
+                  <text x="295" y="335">Rohtang Pass</text>
+                </g>
+                <!-- Kaza / Key Monastery -->
+                <g class="map-pin" data-loc="kaza">
+                  <circle cx="420" cy="400" r="7" />
+                  <text x="420" y="425" text-anchor="middle">Kaza (Spiti)</text>
+                </g>
+                <!-- Chandra Tal -->
+                <g class="map-pin" data-loc="chandratal">
+                  <ellipse cx="370" cy="310" rx="9" ry="5" class="lake-pin" />
+                  <text x="385" y="314">Chandra Tal</text>
+                </g>
+                <!-- Baralacha La -->
+                <g class="map-pin" data-loc="baralacha">
+                  <polygon points="435,215 440,205 445,215" />
+                  <text x="440" y="195" text-anchor="middle">Baralacha La</text>
+                </g>
+                <!-- Leh (Ladakh) -->
+                <g class="map-pin" data-loc="leh">
+                  <circle cx="640" cy="50" r="8" />
+                  <text x="640" y="35" text-anchor="middle">Leh (Ladakh)</text>
+                </g>
+              </g>
+            </svg>
+            <!-- Dynamic map info overlay -->
+            <div class="map-info-box" id="mapInfoBox">
+              <h5 id="mapLocName">Manali Base</h5>
+              <p id="mapLocDesc">The hub of our mountain operations. Starting point for the Hamta Pass, Beas Kund, and Solang Valley expeditions. ABVIMAS certification center nearby.</p>
+              <span class="map-loc-coordinates" id="mapLocCoords">32.2396° N, 77.1887° E</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===================== ROUTES ===================== -->
   <section class="routes section-pad" id="routes">
     <div class="wrap">
@@ -142,6 +284,88 @@
         <p>A deliberately short list. Every trip is private or small-group, led by locally-trained guides, with acclimatisation days built around real weather — never a fixed headcount. Priced by conversation, not by catalogue.</p>
       </div>
       <div class="route-grid" id="routeGrid"><!-- injected by JS --></div>
+    </div>
+  </section>
+
+  <!-- ===================== SAFETY & CERTIFICATION ===================== -->
+  <section class="safety-cert-section section-pad" id="safety">
+    <div class="topography-overlay"></div>
+    <div class="wrap">
+      <div class="safety-grid">
+        <!-- Left Column: Safety Dashboard -->
+        <div class="safety-dashboard reveal">
+          <p class="eyebrow">Mountaineering Protocols</p>
+          <h2>High-Altitude Safety Dashboard</h2>
+          <p class="safety-sub">Every expedition is equipped to professional standards to manage high-altitude challenges. We carry active tracking, communication, and medical supplies.</p>
+          <div class="safety-dashboard-items">
+            <div class="safety-item">
+              <div class="safety-item-icon">🫁</div>
+              <div class="safety-item-info">
+                <h4>Pulse Oximeters</h4>
+                <p>Daily blood oxygen and pulse tracking for every climber.</p>
+              </div>
+              <span class="safety-status status-active">ACTIVE</span>
+            </div>
+            <div class="safety-item">
+              <div class="safety-item-icon">🧪</div>
+              <div class="safety-item-info">
+                <h4>Medical Oxygen Cylinders</h4>
+                <p>Pressurized medical oxygen on all climbs over 4,500m.</p>
+              </div>
+              <span class="safety-status status-active">FULLY STOCKED</span>
+            </div>
+            <div class="safety-item">
+              <div class="safety-item-icon">🩹</div>
+              <div class="safety-item-info">
+                <h4>Advanced First-Aid & Trauma Kits</h4>
+                <p>Equipped with high-altitude therapeutics and emergency medicines.</p>
+              </div>
+              <span class="safety-status status-active">VERIFIED</span>
+            </div>
+            <div class="safety-item">
+              <div class="safety-item-icon">🛰️</div>
+              <div class="safety-item-info">
+                <h4>Satellite GPS Communicators</h4>
+                <p>Real-time location sharing, weather warnings, and SOS capability.</p>
+              </div>
+              <span class="safety-status status-active">SIGNAL ACTIVE</span>
+            </div>
+          </div>
+        </div>
+        <!-- Right Column: MD Certification Spotlight -->
+        <div class="guide-spotlight reveal">
+          <div class="spotlight-card">
+            <div class="spotlight-img-frame">
+              <img src="Photos/7722dc55-3566-4a48-9e9a-e6fb7f49c5db.jpg" alt="Manoj Kumar Lead Guide" />
+              <div class="video-play-btn"><span>▶</span> Play Guiding Philosophy</div>
+            </div>
+            <div class="spotlight-details">
+              <span class="spotlight-tag">MD & LEAD GUIDE</span>
+              <h3>Manoj Kumar</h3>
+              <p class="spotlight-subtitle">ABVIMAS Certified Mountaineer & Instructor</p>
+              <div class="spotlight-badges">
+                <span class="s-badge">Advance Cert</span>
+                <span class="s-badge">MOI Instructor</span>
+                <span class="s-badge">10+ 6,000m Summits</span>
+              </div>
+              <div class="spotlight-bullets">
+                <div class="spotlight-bullet">
+                  <span class="bullet-icon">🏔️</span>
+                  <span><strong>ABVIMAS Credentials:</strong> Advanced and Method of Instruction (MOI) credentials from the ABVIMAS Mountaineering Institute in Manali.</span>
+                </div>
+                <div class="spotlight-bullet">
+                  <span class="bullet-icon">🧗</span>
+                  <span><strong>High-Altitude Experience:</strong> Personally scaled 10 Himalayan peaks between 6,000m and 6,500m.</span>
+                </div>
+                <div class="spotlight-bullet">
+                  <span class="bullet-icon">🛡️</span>
+                  <span><strong>Nomad Legacy:</strong> Raised by Khampa nomads, carrying centuries of oral routing wisdom.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 

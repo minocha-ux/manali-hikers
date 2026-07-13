@@ -133,6 +133,68 @@ form.addEventListener('submit', e => {
   document.getElementById('formSuccess').classList.add('show');
 });
 
+/* ---------- Interactive SVG Map locations data ---------- */
+const mapLocations = {
+  kullu: {
+    name: "Kullu Valley",
+    coords: "31.9578° N, 77.1095° E",
+    desc: "The fertile valley of Kullu, flanked by pine forests and apple orchards. Basecamp for low-altitude acclimatisation treks before pushing into the high trans-Himalayan passes."
+  },
+  manali: {
+    name: "Manali Base (Shaminala)",
+    coords: "32.2396° N, 77.1887° E",
+    desc: "The main headquarters of Manali Hikers. Our equipment depot, logistics center, and guide headquarters are based in Shaminala near Jagatsukh."
+  },
+  rohtang: {
+    name: "Rohtang Pass",
+    coords: "32.3716° N, 77.2465° E",
+    desc: "Altitude 3,978m. The legendary gateway pass connecting Kullu to the high-altitude deserts of Lahaul and Spiti Valleys. Famous for rapid weather changes and deep snow."
+  },
+  kaza: {
+    name: "Kaza & Key Monastery",
+    coords: "32.2276° N, 78.0708° E",
+    desc: "Altitude 3,650m. The administrative hub of Spiti Valley. Key Monastery towers over the Spiti River nearby. Base for our Spiti jeep safaris and high-altitude climbs."
+  },
+  chandratal: {
+    name: "Chandra Tal (Moon Lake)",
+    coords: "32.4820° N, 77.6163° E",
+    desc: "Altitude 4,300m. A high-altitude lake of crescent shape, sacred to local shepherds. Important camping site on our Spiti and Lahaul trekking routes."
+  },
+  baralacha: {
+    name: "Baralacha La",
+    coords: "32.7386° N, 77.4208° E",
+    desc: "Altitude 4,890m. A high mountain pass along the Manali-Leh Highway, crossing the Zanskar range. It connects the Lahaul district with Ladakh."
+  },
+  leh: {
+    name: "Leh (Ladakh)",
+    coords: "34.1526° N, 77.5771° E",
+    desc: "Altitude 3,500m. The high-desert capital of Ladakh, surrounded by barren peaks and ancient Buddhist monasteries. Base for our Markha Valley and Kang Yatse expeditions."
+  }
+};
+
+/* ---------- SVG Map event listeners ---------- */
+const pins = document.querySelectorAll('.map-pin');
+const locName = document.getElementById('mapLocName');
+const locDesc = document.getElementById('mapLocDesc');
+const locCoords = document.getElementById('mapLocCoords');
+
+pins.forEach(pin => {
+  const updateMapInfo = () => {
+    const locId = pin.getAttribute('data-loc');
+    const data = mapLocations[locId];
+    if (data) {
+      pins.forEach(p => p.classList.remove('active'));
+      pin.classList.add('active');
+      locName.textContent = data.name;
+      locDesc.textContent = data.desc;
+      locCoords.textContent = data.coords;
+    }
+  };
+
+  pin.addEventListener('mouseenter', updateMapInfo);
+  pin.addEventListener('click', updateMapInfo);
+});
+
 /* ---------- Reveal on scroll ---------- */
 const io = new IntersectionObserver((entries) => {
   entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
