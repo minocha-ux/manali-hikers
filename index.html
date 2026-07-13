@@ -66,68 +66,55 @@
   </section>
 
   <!-- ===================== STORY ===================== -->
+  <!-- ===================== STORY + LINEAGE — one continuous beat, not three ===================== -->
   <section class="story section-pad" id="story">
     <div class="wrap">
       <div class="story-grid">
         <div class="story-copy reveal">
           <p class="eyebrow">Our Story</p>
           <h2>Trail knowledge <em>passed down,</em> not looked up.</h2>
-          <p>Manoj Kumar's family are <strong>Khampa</strong> — Buddhist nomads of the north-eastern Himalaya who moved with the seasons and their herds, and who traced many of the passes we still cross today, long before they had names on any trekking map.</p>
-          <p>His father settled at Shaminala, near Jagatsukh in the Kullu valley, and began guiding the earliest parties over these routes. Manoj turned that inheritance into Manali Hikers in 1998.</p>
-          <!-- DRAFT: this line is a rewritten dramatization, not a direct Manoj quote — replace with his real words or cut -->
-          <p class="pull draft-flag">"We don't read these mountains from a map. We were raised on them."</p>
-          <p>Today he holds Advanced and Method-of-Instruction qualifications from the ABVIMAS Mountaineering Institute in Manali, and has personally summited ten peaks between 6,000 and 6,500 metres. Every guide on the team trains to that same standard.</p>
-          <div class="story-sign">
-            <div>
-              <div class="who">Manoj Kumar</div>
-              <div class="role">Founder &amp; lead guide · ABVIMAS certified</div>
-            </div>
-          </div>
+          <p>Manoj Kumar's family are <strong>Khampa</strong> — Buddhist nomads who traced many of the Himalayan passes we still cross today, long before they had names on any map. Every trip we run still carries that inherited knowledge of the mountains.</p>
         </div>
         <div class="story-visual reveal">
           <div class="photo-frame">
-            <!-- PHOTO: portrait of Manoj in the field, ABVIMAS instructor kit -->
             <img src="Photos/7722dc55-3566-4a48-9e9a-e6fb7f49c5db.jpg" alt="Manoj Kumar, lead guide, resting by a mountain stream with client" />
             <span class="photo-tag">Manoj in the field</span>
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ===================== LINEAGE — HORIZONTAL TIMELINE ===================== -->
-  <section class="lineage section-pad" id="lineage">
-    <div class="wrap">
-      <div class="lineage-head reveal">
-        <div>
-          <p class="eyebrow">The Trail Lineage</p>
-          <h2>One family, <em>the same passes.</em></h2>
-        </div>
-        <p class="lineage-intro">From nomadic herders who first crossed these ridgelines, to a certified mountaineer leading guests over them today — one family, one continuous line on the map.</p>
-      </div>
-
-      <div class="timeline">
-        <div class="timeline-track" id="track">
-          <div class="timeline-line"></div>
-          <!-- generations injected by JS -->
-        </div>
-
-        <div class="gen-detail reveal" id="genDetail">
-          <div class="gen-detail-meta">
-            <span class="eyebrow" id="dEra"></span>
-            <h3 id="dName"></h3>
-            <div class="gen-detail-pass" id="dPass"></div>
-            <p id="dStory"></p>
-            <a href="#routes" class="route-link" id="dLink"></a>
-            <p class="gen-hint">← Drag or tap a generation to move along the family's timeline</p>
+      <div class="lineage-inner" id="lineage">
+        <div class="lineage-head reveal">
+          <div>
+            <p class="eyebrow">The Trail Lineage</p>
+            <h2>One family, <em>the same passes.</em></h2>
           </div>
-          <div class="gen-photo">
-            <svg viewBox="0 0 640 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" id="dSvg">
-              <defs><linearGradient id="gp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#26302b"/><stop offset="1" stop-color="#0f1b14"/></linearGradient></defs>
-              <rect width="640" height="400" fill="url(#gp)"/>
-              <path d="M0 250 L160 150 L320 240 L480 130 L640 230 L640 400 L0 400 Z" fill="#1b2a22"/>
-              <path d="M0 320 L200 240 L400 310 L640 250 L640 400 L0 400 Z" fill="#0f1b14"/>
-            </svg>
+          <p class="lineage-intro">From nomadic herders who first crossed these ridgelines, to a certified mountaineer leading guests over them today.</p>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-track" id="track">
+            <div class="timeline-line"></div>
+            <!-- generations injected by JS -->
+          </div>
+
+          <div class="gen-detail reveal" id="genDetail">
+            <div class="gen-detail-meta">
+              <span class="eyebrow" id="dEra"></span>
+              <h3 id="dName"></h3>
+              <div class="gen-detail-pass" id="dPass"></div>
+              <p id="dStory"></p>
+              <a href="#routes" class="route-link" id="dLink"></a>
+              <p class="gen-hint">← Drag or tap a generation to move along the family's timeline</p>
+            </div>
+            <div class="gen-photo">
+              <svg viewBox="0 0 640 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" id="dSvg">
+                <defs><linearGradient id="gp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#26302b"/><stop offset="1" stop-color="#0f1b14"/></linearGradient></defs>
+                <rect width="640" height="400" fill="url(#gp)"/>
+                <path d="M0 250 L160 150 L320 240 L480 130 L640 230 L640 400 L0 400 Z" fill="#1b2a22"/>
+                <path d="M0 320 L200 240 L400 310 L640 250 L640 400 L0 400 Z" fill="#0f1b14"/>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
@@ -224,56 +211,9 @@
       <div class="routes-head reveal">
         <p class="eyebrow">Signature Routes</p>
         <h2>Routes worth the altitude.</h2>
-        <p>A deliberately short list. Every trip is planned around your dates and group — solo, private, or small-group — led by locally-trained guides, with acclimatisation days built around real weather, not a fixed itinerary. Priced by conversation, not by catalogue.</p>
+        <p>A deliberately short list. Every trip is planned around your dates and group — solo, private, or small-group — led by ABVIMAS-trained guides, with acclimatisation days built around real weather, not a fixed itinerary. Priced by conversation, not by catalogue.</p>
       </div>
       <div class="route-grid" id="routeGrid"><!-- injected by JS --></div>
-    </div>
-  </section>
-
-  <!-- ===================== SAFETY & CERTIFICATION ===================== -->
-  <section class="safety-cert-section section-pad" id="safety">
-    <div class="topography-overlay"></div>
-    <div class="wrap">
-      <div class="safety-head reveal">
-        <p class="eyebrow">Credentials</p>
-        <h2>Trained to a documented standard.</h2>
-        <p class="safety-sub">Every guide on the team trains to the same standard our founder holds — ABVIMAS certified, with real high-altitude summit experience behind it.</p>
-      </div>
-      <div class="safety-grid">
-        <!-- MD Certification Spotlight -->
-        <div class="guide-spotlight reveal">
-          <div class="spotlight-card">
-            <div class="spotlight-img-frame">
-              <img src="Photos/7722dc55-3566-4a48-9e9a-e6fb7f49c5db.jpg" alt="Manoj Kumar Lead Guide" />
-              <div class="video-play-btn draft-flag-inline"><span>▶</span> Play Guiding Philosophy</div>
-            </div>
-            <div class="spotlight-details">
-              <span class="spotlight-tag">MD & LEAD GUIDE</span>
-              <h3>Manoj Kumar</h3>
-              <p class="spotlight-subtitle">ABVIMAS Certified Mountaineer & Instructor</p>
-              <div class="spotlight-badges">
-                <span class="s-badge">Advance Cert</span>
-                <span class="s-badge">MOI Instructor</span>
-                <span class="s-badge">10+ 6,000m Summits</span>
-              </div>
-              <div class="spotlight-bullets">
-                <div class="spotlight-bullet">
-                  <span class="bullet-icon">🏔️</span>
-                  <span><strong>ABVIMAS Credentials:</strong> Advanced and Method of Instruction (MOI) credentials from the ABVIMAS Mountaineering Institute in Manali.</span>
-                </div>
-                <div class="spotlight-bullet">
-                  <span class="bullet-icon">🧗</span>
-                  <span><strong>High-Altitude Experience:</strong> Personally scaled 10 Himalayan peaks between 6,000m and 6,500m.</span>
-                </div>
-                <div class="spotlight-bullet">
-                  <span class="bullet-icon">🛡️</span>
-                  <span><strong>Nomad Legacy:</strong> Raised by Khampa nomads, carrying centuries of oral routing wisdom.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 

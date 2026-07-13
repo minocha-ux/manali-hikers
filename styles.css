@@ -225,14 +225,6 @@ img { max-width: 100%; display: block; }
 }
 .story-copy h2 em { color: var(--terracotta); }
 .story-copy p { color: rgba(245, 242, 235, 0.72); margin-bottom: 20px; font-size: 16.5px; }
-.story-copy .pull {
-  font-family: 'Newsreader', serif; font-style: italic; font-size: 22px;
-  color: var(--cream); border-left: 2px solid var(--gold); padding-left: 22px;
-  margin: 30px 0; line-height: 1.4;
-}
-.story-sign { display: flex; align-items: center; gap: 16px; margin-top: 30px; }
-.story-sign .who { font-weight: 700; font-size: 15px; }
-.story-sign .role { font-size: 13px; color: var(--stone); }
 .photo-frame {
   position: relative; border-radius: 3px; overflow: hidden;
   aspect-ratio: 4/5; background: var(--ink);
@@ -249,6 +241,8 @@ img { max-width: 100%; display: block; }
    LINEAGE — HORIZONTAL TIMELINE (centerpiece)
    ============================================================ */
 .lineage { background: var(--ink); color: var(--cream); position: relative; }
+/* Now nested inside .story — a continuation of the same beat, not a new section */
+.lineage-inner { position: relative; margin-top: clamp(64px, 8vw, 100px); }
 .lineage-head { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px; margin-bottom: 56px; }
 .lineage-head h2 { font-size: clamp(30px, 4vw, 54px); max-width: 14ch; }
 .lineage-head h2 em { color: var(--gold); }
@@ -629,65 +623,6 @@ img { max-width: 100%; display: block; }
 .map-loc-coordinates { font-family: 'Manrope', sans-serif; font-size: 10.5px; font-weight: 700; color: var(--stone); letter-spacing: 0.05em; display: block; }
 
 /* ============================================================
-   SAFETY & QUALIFICATIONS SECTION
-   ============================================================ */
-.safety-cert-section { background: var(--ink); border-bottom: 1px solid var(--line); }
-.safety-head { max-width: 60ch; margin-bottom: 48px; position: relative; z-index: 2; }
-.safety-head h2 { font-size: clamp(28px, 3.6vw, 44px); margin: 16px 0 16px; }
-.safety-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(40px, 6vw, 90px);
-  align-items: center;
-}
-
-/* --- MD Guide Spotlight --- */
-.guide-spotlight { display: flex; justify-content: center; }
-.spotlight-card {
-  background: var(--ink-card);
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  overflow: hidden;
-  max-width: 480px;
-  box-shadow: 0 15px 40px -15px rgba(0,0,0,0.5);
-}
-.spotlight-img-frame { position: relative; aspect-ratio: 4/3; background: var(--ink); overflow: hidden; }
-.spotlight-img-frame img { width: 100%; height: 100%; object-fit: cover; }
-.video-play-btn {
-  position: absolute;
-  left: 20px;
-  bottom: 20px;
-  background: rgba(12, 16, 14, 0.85);
-  backdrop-filter: blur(4px);
-  border: 1px solid var(--gold);
-  border-radius: 2px;
-  color: var(--cream);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 8px 14px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  z-index: 3;
-}
-.video-play-btn span { color: var(--gold); font-size: 10px; }
-.spotlight-details { padding: 28px 30px; }
-.spotlight-tag { font-family: 'Manrope', sans-serif; font-size: 10.5px; font-weight: 800; letter-spacing: 0.1em; color: var(--terracotta); }
-.spotlight-card h3 { font-family: 'Newsreader', serif; font-size: 32px; color: var(--cream); margin: 6px 0 2px; font-weight: 500; }
-.spotlight-subtitle { font-size: 14px; color: var(--stone); margin-bottom: 20px; font-style: italic; }
-.spotlight-badges { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
-.s-badge { background: rgba(245,242,235,0.06); font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 20px; color: var(--cream); border: 1px solid var(--line); }
-
-.spotlight-bullets { display: flex; flex-direction: column; gap: 14px; }
-.spotlight-bullet { display: flex; gap: 12px; align-items: flex-start; }
-.bullet-icon { font-size: 16px; margin-top: 2px; }
-.spotlight-bullet span { font-size: 13px; color: rgba(245,242,235,0.85); line-height: 1.5; }
-.spotlight-bullet span strong { color: var(--cream); }
-
-/* ============================================================
    UPDATES TO PLAN & FORMS
    ============================================================ */
 .plan { background: var(--ink-soft); }
@@ -705,13 +640,4 @@ img { max-width: 100%; display: block; }
 }
 .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--gold); }
 .form-success { background: rgba(212,175,55,0.1); border-color: var(--gold); color: var(--cream); }
-
-/* ============================================================
-   RESPONSIVE OVERLOADS FOR NEW PAGES
-   ============================================================ */
-@media (max-width: 900px) {
-  .adventure-grid { grid-template-columns: 1fr; gap: 40px; }
-  .safety-grid { grid-template-columns: 1fr; gap: 50px; }
-  .guide-spotlight { justify-content: flex-start; }
-}
 
