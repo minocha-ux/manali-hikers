@@ -227,7 +227,7 @@ img { max-width: 100%; display: block; }
 .story-copy p { color: rgba(245, 242, 235, 0.72); margin-bottom: 20px; font-size: 16.5px; }
 .photo-frame {
   position: relative; border-radius: 3px; overflow: hidden;
-  aspect-ratio: 4/5; background: var(--ink);
+  aspect-ratio: 4/3; background: var(--ink);
 }
 .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
 .photo-tag {
@@ -310,14 +310,26 @@ img { max-width: 100%; display: block; }
 .routes-head p { color: rgba(245, 242, 235, 0.72); font-size: 16.5px; }
 .routes-addon { font-size: 14px; color: var(--stone); font-style: italic; margin-top: 14px; }
 
-.route-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; }
+.route-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; position: sticky; top: 64px; z-index: 20; padding: 12px 0; background: linear-gradient(180deg, var(--ink) 72%, transparent); }
 .route-pill {
   font-family: 'Manrope', sans-serif; font-size: 13px; font-weight: 600;
   color: rgba(245,242,235,0.75); background: transparent; border: 1px solid var(--line);
-  border-radius: 20px; padding: 8px 18px; cursor: pointer; transition: all 0.3s var(--ease);
+  border-radius: 20px; padding: 8px 18px; cursor: pointer; text-decoration: none;
+  transition: all 0.3s var(--ease);
 }
-.route-pill:hover { border-color: rgba(212,175,55,0.5); color: var(--cream); }
-.route-pill.active { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+.route-pill:hover { border-color: rgba(212,175,55,0.5); color: var(--cream); background: rgba(212,175,55,0.06); }
+
+/* Editorial category bands */
+.route-band { margin-top: clamp(48px, 6vw, 72px); scroll-margin-top: 120px; }
+.route-band:first-child { margin-top: 8px; }
+.route-band-head { margin-bottom: 26px; }
+.route-band-head h3 { font-family: 'Newsreader', serif; font-size: clamp(24px, 3vw, 34px); color: var(--cream); font-weight: 500; }
+.route-band-intro { font-size: 15px; color: var(--stone); font-style: italic; margin-top: 6px; max-width: 60ch; }
+.route-subhead {
+  font-family: 'Manrope', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--terracotta); margin: 22px 0 16px;
+}
+.route-band .route-grid + .route-subhead { margin-top: 30px; }
 
 .route-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
 .route-card {
@@ -539,135 +551,6 @@ img { max-width: 100%; display: block; }
   border-radius: 2px;
   vertical-align: middle;
 }
-
-/* ============================================================
-   TOPOGRAPHY BACKGROUNDS
-   ============================================================ */
-.topography-overlay {
-  position: absolute;
-  inset: 0;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cpath d='M10 80 C 40 85, 60 70, 100 80 C 130 90, 150 110, 190 90 C 240 70, 270 100, 310 110 C 350 120, 370 95, 390 105 M10 140 C 50 150, 80 130, 120 145 C 160 160, 180 140, 220 150 C 270 160, 300 130, 340 140 C 370 150, 380 135, 390 140 M10 200 C 60 210, 90 185, 140 210 C 180 230, 210 200, 250 215 C 290 230, 320 205, 360 220 C 380 230, 385 210, 390 220 M10 260 C 50 270, 75 250, 115 270 C 150 290, 190 265, 230 280 C 270 295, 310 270, 350 285 M10 320 C 40 330, 80 310, 120 330 C 160 350, 200 320, 240 340 C 280 360, 320 330, 360 345' fill='none' stroke='%23f5f2eb' stroke-width='1.2'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* ============================================================
-   ADVENTURE MAP & STATUS SECTION
-   ============================================================ */
-.adventure-map-section { background: var(--ink-soft); overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.adventure-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(40px, 5vw, 80px);
-  position: relative;
-  z-index: 2;
-}
-
-/* --- Interactive Map --- */
-.map-visual { display: flex; flex-direction: column; height: 100%; max-width: 760px; margin: 0 auto; width: 100%; }
-.map-header { margin-bottom: 24px; }
-.map-header h3 { font-size: clamp(24px, 3vw, 36px); margin-top: 6px; color: var(--cream); }
-.map-caption { font-size: 12px; font-style: italic; color: var(--stone); margin-top: 8px; display: inline-block; }
-.map-container {
-  flex: 1;
-  background: var(--ink-card);
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-}
-.vector-map { width: 100%; height: 100%; max-height: 520px; }
-
-/* Map Path styling */
-.map-route-line {
-  fill: none;
-  stroke: var(--stone-soft);
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  stroke-dasharray: 4 6;
-  transition: all 0.5s var(--ease);
-}
-.map-route-line.active {
-  stroke: var(--gold);
-  stroke-dasharray: none;
-  filter: drop-shadow(0 0 4px var(--gold));
-}
-
-/* Map Pins styling */
-.map-pin { cursor: pointer; }
-.map-pin circle, .map-pin polygon, .map-pin ellipse {
-  fill: var(--ink);
-  stroke: var(--stone);
-  stroke-width: 2;
-  transition: all 0.35s var(--ease);
-}
-.map-pin text {
-  font-family: 'Manrope', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  fill: var(--stone);
-  opacity: 0.85;
-  pointer-events: none;
-  transition: all 0.3s;
-}
-.map-pin polygon { transform-origin: 0px 0px; }
-
-/* Hover states */
-.map-pin:hover circle, .map-pin.active circle {
-  fill: var(--gold);
-  stroke: var(--cream);
-  stroke-width: 2.5;
-  transform: scale(1.25);
-}
-.map-pin:hover polygon, .map-pin.active polygon {
-  fill: var(--terracotta);
-  stroke: var(--cream);
-  stroke-width: 2.5;
-}
-.map-pin:hover ellipse, .map-pin.active ellipse {
-  fill: #61b3cf;
-  stroke: var(--cream);
-}
-.map-pin:hover text, .map-pin.active text {
-  fill: var(--cream);
-  opacity: 1;
-  font-weight: 700;
-}
-
-/* Special classes */
-.pulsing-pin {
-  animation: pinPulse 2s infinite alternate;
-}
-@keyframes pinPulse {
-  0% { r: 9px; stroke-width: 2px; }
-  100% { r: 12px; stroke-width: 3.5px; stroke: var(--gold); }
-}
-
-.lake-pin { fill: rgba(97,179,207,0.3) !important; stroke: #61b3cf !important; }
-
-/* Dynamic popup info overlay */
-.map-info-box {
-  position: absolute;
-  left: 20px;
-  bottom: 20px;
-  right: 20px;
-  background: rgba(12, 16, 14, 0.94);
-  border: 1px solid var(--gold);
-  border-radius: 3px;
-  padding: 16px 20px;
-  backdrop-filter: blur(8px);
-  z-index: 5;
-  transition: all 0.4s var(--ease);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-.map-info-box h5 { font-family: 'Newsreader', serif; font-size: 20px; color: var(--gold); margin-bottom: 6px; font-weight: 500; }
-.map-info-box p { font-size: 13px; color: rgba(245,242,235,0.8); line-height: 1.55; margin-bottom: 8px; }
-.map-loc-coordinates { font-family: 'Manrope', sans-serif; font-size: 10.5px; font-weight: 700; color: var(--stone); letter-spacing: 0.05em; display: block; }
 
 /* ============================================================
    UPDATES TO PLAN & FORMS

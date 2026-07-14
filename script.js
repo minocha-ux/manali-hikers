@@ -9,7 +9,7 @@
    timeline instead of inventing names/eras for a 4th generation. */
 const lineage = [
   {
-    era: 'Generations past · Nomadic era',
+    era: 'Early–mid 1900s · Nomadic era',
     name: 'The Khampa ancestors',
     pass: 'Across the Himalaya, unnamed passes',
     story: 'Manoj\'s family were Khampa — Buddhist nomadic herders who moved with the seasons across the Himalaya with their cattle, and in doing so traced a great number of the trek routes still walked today.',
@@ -17,7 +17,7 @@ const lineage = [
     img: 'Photos/IMG_1706.jpeg'
   },
   {
-    era: 'Manoj\'s father · Early guiding',
+    era: '1970s–1990s · Settles at Shaminala',
     name: 'Manoj\'s father',
     pass: 'Shaminala, near Jagatsukh',
     story: 'Rather than continue the nomadic life, he settled the family at Shaminala near Jagatsukh in the Kullu valley, and began guiding treks on the routes the family already knew — turning inherited knowledge into a livelihood.',
@@ -27,14 +27,11 @@ const lineage = [
   {
     era: '1998–present · Manali Hikers',
     name: 'Manoj Kumar — Founder',
-    // Basic Mountaineering Course isn't named on the real site — only Advanced + MOI are confirmed —
-    // so it's flagged as a draft assumption (standard ABVIMAS prerequisite) pending confirmation.
-    // Years are placeholders (dummy) requested for layout — none of these dates are confirmed with Manoj.
-    pass: '<span class="draft-flag-inline">Basic Mountaineering Course</span> → Advanced Mountaineering Course → Method of Instruction (MOI), ABVIMAS'
-      + '<br><span class="draft-flag-inline" style="margin-top:10px; display:inline-block;">2000 → 2003 → 2006 — placeholder years, confirm with Manoj</span>',
+    // ABVIMAS course years are assumed/approximate (kept flagged) — confirm the real dates with Manoj.
+    pass: 'Basic Mountaineering Course (1994) · Advanced (1996) · Method of Instruction (1997), ABVIMAS <span class="draft-flag-inline">dates approximate</span>',
     story: 'Grew up in that same family, trekked those same routes for years, then founded Manali Hikers in 1998. Trained through ABVIMAS — from the foundations up to Advanced and Method-of-Instruction level — and has since summited ten peaks between 6,000 and 6,500 metres, training every guide on the team to that same standard.',
     link: 'See our routes →',
-    img: 'Photos/manoj-about-us-real.jpg'
+    img: 'Photos/7722dc55-3566-4a48-9e9a-e6fb7f49c5db.jpg'
   }
 ];
 
@@ -121,9 +118,6 @@ const routes = [
     duration: 'By enquiry', alt: '', img: 'Photos/94462484-3a39-4c2a-9d94-ccd61cb1b56b.jpg' }
 ];
 
-const routeCategories = ['All', 'Trekking', 'Expeditions', 'Jeep Safari', 'Mountain Biking', 'Camps', 'Culture Tours'];
-let activeRouteCategory = 'All';
-
 /* ---------- Build the timeline ---------- */
 const track = document.getElementById('track');
 let activeGen = 2;
@@ -154,31 +148,22 @@ function selectGen(i) {
 }
 selectGen(activeGen);
 
-/* ---------- Build the category filter pills ---------- */
-const pillsEl = document.getElementById('routePills');
-routeCategories.forEach(cat => {
-  const pill = document.createElement('button');
-  pill.type = 'button';
-  pill.className = 'route-pill' + (cat === activeRouteCategory ? ' active' : '');
-  pill.textContent = cat;
-  pill.addEventListener('click', () => {
-    activeRouteCategory = cat;
-    document.querySelectorAll('.route-pill').forEach(p => p.classList.toggle('active', p.textContent === cat));
-    renderRoutes();
-  });
-  pillsEl.appendChild(pill);
-});
+/* ---------- Routes as editorial category bands ----------
+   Each category is its own titled band with a one-line intro. Trekking is
+   further split Himachal / Ladakh. The pills act as jump-navigation to bands
+   rather than filters, so the full breadth stays visible but organised. */
+const bandDefs = [
+  { cat: 'Trekking',        slug: 'band-trekking',        intro: 'From gentle valley walks to high-pass crossings, across Himachal and Ladakh.' },
+  { cat: 'Expeditions',     slug: 'band-expeditions',     intro: '6,000-metre peaks and technical climbs, led to ABVIMAS standard.' },
+  { cat: 'Jeep Safari',     slug: 'band-jeep-safari',     intro: 'The high passes, lakes and monasteries of the trans-Himalaya, by road.' },
+  { cat: 'Mountain Biking', slug: 'band-mountain-biking', intro: "Motorbike and pedal tours over some of the world's highest motorable passes." },
+  { cat: 'Camps',           slug: 'band-camps',           intro: 'Fixed-base adventure and skill camps for groups and young explorers.' },
+  { cat: 'Culture Tours',   slug: 'band-culture-tours',   intro: 'Monasteries, villages and living Buddhist culture across Spiti, Ladakh and Kullu.' }
+];
 
-/* ---------- Build the route grid (filtered by category) ---------- */
-const grid = document.getElementById('routeGrid');
-function renderRoutes() {
-  grid.innerHTML = '';
-  const filtered = activeRouteCategory === 'All' ? routes : routes.filter(r => r.category === activeRouteCategory);
-  filtered.forEach(r => {
-    const card = document.createElement('a');
-    card.className = 'route-card';
-    card.href = '#plan';
-    card.innerHTML = `
+function routeCardHTML(r) {
+  return `
+    <a class="route-card" href="#plan">
       <div class="route-img">
         <div class="route-badges">
           ${r.diff ? `<span class="badge badge-diff">${r.diff}</span>` : ''}
@@ -197,11 +182,43 @@ function renderRoutes() {
           <span class="route-price">By <em>enquiry</em></span>
           <span class="route-view">Enquire →</span>
         </div>
-      </div>`;
-    grid.appendChild(card);
-  });
+      </div>
+    </a>`;
 }
-renderRoutes();
+
+function gridHTML(list) {
+  return `<div class="route-grid">${list.map(routeCardHTML).join('')}</div>`;
+}
+
+/* Jump-nav pills */
+const pillsEl = document.getElementById('routePills');
+pillsEl.innerHTML = bandDefs.map(b => `<a class="route-pill" href="#${b.slug}">${b.cat}</a>`).join('');
+
+/* Bands */
+const bandsEl = document.getElementById('routeBands');
+bandsEl.innerHTML = bandDefs.map(b => {
+  const inCat = routes.filter(r => r.category === b.cat);
+  let body;
+  if (b.cat === 'Trekking') {
+    const himachal = inCat.filter(r => r.region === 'Himachal');
+    const ladakh = inCat.filter(r => r.region === 'Ladakh');
+    body = `
+      <div class="route-subhead">Himachal Treks</div>
+      ${gridHTML(himachal)}
+      <div class="route-subhead">Ladakh Treks</div>
+      ${gridHTML(ladakh)}`;
+  } else {
+    body = gridHTML(inCat);
+  }
+  return `
+    <div class="route-band" id="${b.slug}">
+      <div class="route-band-head">
+        <h3>${b.cat}</h3>
+        <p class="route-band-intro">${b.intro}</p>
+      </div>
+      ${body}
+    </div>`;
+}).join('');
 
 /* ---------- Data: real day-by-day itineraries ----------
    A representative set across Trekking / Expeditions / Jeep Safari, transcribed
@@ -361,68 +378,6 @@ form.addEventListener('submit', e => {
   e.preventDefault();
   form.style.display = 'none';
   document.getElementById('formSuccess').classList.add('show');
-});
-
-/* ---------- Interactive SVG Map locations data ---------- */
-const mapLocations = {
-  kullu: {
-    name: "Kullu Valley",
-    coords: "31.9578° N, 77.1095° E",
-    desc: "The fertile valley of Kullu, flanked by pine forests and apple orchards. Basecamp for low-altitude acclimatisation treks before pushing into the high trans-Himalayan passes."
-  },
-  manali: {
-    name: "Manali Base (Shaminala)",
-    coords: "32.2396° N, 77.1887° E",
-    desc: "Our home base at Shaminala, near Jagatsukh in the Kullu Valley — where the family has guided from for generations."
-  },
-  rohtang: {
-    name: "Rohtang Pass",
-    coords: "32.3716° N, 77.2465° E",
-    desc: "Altitude 3,978m. The legendary gateway pass connecting Kullu to the high-altitude deserts of Lahaul and Spiti Valleys. Famous for rapid weather changes and deep snow."
-  },
-  kaza: {
-    name: "Kaza & Key Monastery",
-    coords: "32.2276° N, 78.0708° E",
-    desc: "Altitude 3,650m. The administrative hub of Spiti Valley. Key Monastery towers over the Spiti River nearby. Base for our Spiti jeep safaris and high-altitude climbs."
-  },
-  chandratal: {
-    name: "Chandra Tal (Moon Lake)",
-    coords: "32.4820° N, 77.6163° E",
-    desc: "Altitude 4,300m. A high-altitude lake of crescent shape, sacred to local shepherds. Important camping site on our Spiti and Lahaul trekking routes."
-  },
-  baralacha: {
-    name: "Baralacha La",
-    coords: "32.7386° N, 77.4208° E",
-    desc: "Altitude 4,890m. A high mountain pass along the Manali-Leh Highway, crossing the Zanskar range. It connects the Lahaul district with Ladakh."
-  },
-  leh: {
-    name: "Leh (Ladakh)",
-    coords: "34.1526° N, 77.5771° E",
-    desc: "Altitude 3,500m. The high-desert capital of Ladakh, surrounded by barren peaks and ancient Buddhist monasteries. Base for our Markha Valley and Kang Yatse expeditions."
-  }
-};
-
-/* ---------- SVG Map event listeners ---------- */
-const pins = document.querySelectorAll('.map-pin');
-const locName = document.getElementById('mapLocName');
-const locDesc = document.getElementById('mapLocDesc');
-const locCoords = document.getElementById('mapLocCoords');
-
-pins.forEach(pin => {
-  const updateMapInfo = () => {
-    const locId = pin.getAttribute('data-loc');
-    const data = mapLocations[locId];
-    if (data) {
-      pins.forEach(p => p.classList.remove('active'));
-      pin.classList.add('active');
-      locName.textContent = data.name;
-      locDesc.textContent = data.desc;
-      locCoords.textContent = data.coords;
-    }
-  };
-
-  pin.addEventListener('mouseenter', updateMapInfo);
-  pin.addEventListener('click', updateMapInfo);
 });
 
 /* ---------- Reveal on scroll ---------- */

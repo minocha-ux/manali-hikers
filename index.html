@@ -65,8 +65,7 @@
     </div>
   </section>
 
-  <!-- ===================== STORY ===================== -->
-  <!-- ===================== STORY + LINEAGE — one continuous beat, not three ===================== -->
+  <!-- ===================== STORY + LINEAGE — one continuous beat ===================== -->
   <section class="story section-pad" id="story">
     <div class="wrap">
       <div class="story-grid">
@@ -77,8 +76,8 @@
         </div>
         <div class="story-visual reveal">
           <div class="photo-frame">
-            <img src="Photos/7722dc55-3566-4a48-9e9a-e6fb7f49c5db.jpg" alt="Manoj Kumar, lead guide, resting by a mountain stream with client" />
-            <span class="photo-tag">Manoj in the field</span>
+            <img src="Photos/IMG_3290.jpeg" alt="The Himalaya above Manali" />
+            <span class="photo-tag">Our backyard — Himachal &amp; Ladakh</span>
           </div>
         </div>
       </div>
@@ -121,92 +120,6 @@
     </div>
   </section>
 
-  <!-- ===================== ADVENTURE MAP & STATUS ===================== -->
-  <section class="adventure-map-section section-pad" id="adventure-map">
-    <div class="topography-overlay"></div>
-    <div class="wrap">
-      <div class="adventure-grid">
-        <!-- Interactive Vector Map -->
-        <div class="map-visual reveal">
-          <div class="map-header">
-            <span class="eyebrow">Himachal & Ladakh</span>
-            <h3>Adventure Route Map</h3>
-            <!-- DRAFT: the connecting lines are a stylised illustration, not real trek-route GPS data -->
-            <p class="map-caption draft-flag-inline">Illustrative map — not to scale, not actual route GPS</p>
-          </div>
-          <div class="map-container">
-            <!-- Topographical vector line map -->
-            <svg viewBox="0 0 800 650" class="vector-map" id="vectorMap">
-              <!-- Paths/Routes connecting pins -->
-              <g class="map-paths">
-                <!-- Kullu to Manali -->
-                <path d="M 220 540 Q 210 480, 240 430" class="map-route-line active" />
-                <!-- Manali to Rohtang Pass -->
-                <path d="M 240 430 Q 230 380, 280 340" class="map-route-line active" />
-                <!-- Rohtang to Kaza (Spiti) -->
-                <path d="M 280 340 Q 340 370, 420 400" class="map-route-line active" />
-                <!-- Rohtang to Lahaul Valley / Keylong -->
-                <path d="M 280 340 Q 250 280, 310 260" class="map-route-line active" />
-                <!-- Lahaul to Baralacha La -->
-                <path d="M 310 260 Q 360 210, 440 210" class="map-route-line active" />
-                <!-- Baralacha La to Lachulung La -->
-                <path d="M 440 210 Q 500 170, 560 200" class="map-route-line active" />
-                <!-- Lachulung La to Tanglang La -->
-                <path d="M 560 200 Q 610 150, 620 120" class="map-route-line active" />
-                <!-- Tanglang La to Leh -->
-                <path d="M 620 120 Q 650 90, 640 50" class="map-route-line active" />
-              </g>
-              <!-- Pins and Labels -->
-              <g class="map-pins">
-                <!-- Kullu Valley -->
-                <g class="map-pin" data-loc="kullu">
-                  <circle cx="220" cy="540" r="7" />
-                  <text x="220" y="565" text-anchor="middle">Kullu Valley</text>
-                </g>
-                <!-- Manali -->
-                <g class="map-pin active" data-loc="manali">
-                  <circle cx="240" cy="430" r="9" class="pulsing-pin" />
-                  <text x="215" y="435" text-anchor="end">Manali Base</text>
-                </g>
-                <!-- Rohtang Pass -->
-                <g class="map-pin" data-loc="rohtang">
-                  <polygon points="275,345 280,335 285,345" />
-                  <text x="295" y="335">Rohtang Pass</text>
-                </g>
-                <!-- Kaza / Key Monastery -->
-                <g class="map-pin" data-loc="kaza">
-                  <circle cx="420" cy="400" r="7" />
-                  <text x="420" y="425" text-anchor="middle">Kaza (Spiti)</text>
-                </g>
-                <!-- Chandra Tal -->
-                <g class="map-pin" data-loc="chandratal">
-                  <ellipse cx="370" cy="310" rx="9" ry="5" class="lake-pin" />
-                  <text x="385" y="314">Chandra Tal</text>
-                </g>
-                <!-- Baralacha La -->
-                <g class="map-pin" data-loc="baralacha">
-                  <polygon points="435,215 440,205 445,215" />
-                  <text x="440" y="195" text-anchor="middle">Baralacha La</text>
-                </g>
-                <!-- Leh (Ladakh) -->
-                <g class="map-pin" data-loc="leh">
-                  <circle cx="640" cy="50" r="8" />
-                  <text x="640" y="35" text-anchor="middle">Leh (Ladakh)</text>
-                </g>
-              </g>
-            </svg>
-            <!-- Dynamic map info overlay -->
-            <div class="map-info-box" id="mapInfoBox">
-              <h5 id="mapLocName">Manali Base</h5>
-              <p id="mapLocDesc">Our home base at Shaminala, near Jagatsukh in the Kullu Valley — where the family has guided from for generations.</p>
-              <span class="map-loc-coordinates" id="mapLocCoords">32.2396° N, 77.1887° E</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ===================== ROUTES ===================== -->
   <section class="routes section-pad" id="routes">
     <div class="wrap">
@@ -216,8 +129,8 @@
         <p>Every trip is planned around your dates and group — solo, private, or small-group — led by ABVIMAS-trained guides, with acclimatisation days built around real weather, not a fixed itinerary. Priced by conversation, not by catalogue.</p>
         <p class="routes-addon">Also arranged on request: skiing at Solang &amp; Hamta, white-water rafting on the Beas, and paragliding at Solang Valley.</p>
       </div>
-      <div class="route-pills" id="routePills"><!-- injected by JS --></div>
-      <div class="route-grid" id="routeGrid"><!-- injected by JS --></div>
+      <div class="route-pills reveal" id="routePills"><!-- jump-nav injected by JS --></div>
+      <div class="route-bands" id="routeBands"><!-- category bands injected by JS --></div>
     </div>
   </section>
 
