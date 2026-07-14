@@ -522,6 +522,7 @@ img { max-width: 100%; display: block; }
 .map-visual { display: flex; flex-direction: column; height: 100%; max-width: 760px; margin: 0 auto; width: 100%; }
 .map-header { margin-bottom: 24px; }
 .map-header h3 { font-size: clamp(24px, 3vw, 36px); margin-top: 6px; color: var(--cream); }
+.map-caption { font-size: 12px; font-style: italic; color: var(--stone); margin-top: 8px; display: inline-block; }
 .map-container {
   flex: 1;
   background: var(--ink-card);

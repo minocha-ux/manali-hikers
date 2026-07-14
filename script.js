@@ -29,7 +29,9 @@ const lineage = [
     name: 'Manoj Kumar — Founder',
     // Basic Mountaineering Course isn't named on the real site — only Advanced + MOI are confirmed —
     // so it's flagged as a draft assumption (standard ABVIMAS prerequisite) pending confirmation.
-    pass: '<span class="draft-flag-inline">Basic Mountaineering Course</span> → Advanced Mountaineering Course → Method of Instruction (MOI), ABVIMAS',
+    // Years are placeholders (dummy) requested for layout — none of these dates are confirmed with Manoj.
+    pass: '<span class="draft-flag-inline">Basic Mountaineering Course</span> → Advanced Mountaineering Course → Method of Instruction (MOI), ABVIMAS'
+      + '<br><span class="draft-flag-inline" style="margin-top:10px; display:inline-block;">2000 → 2003 → 2006 — placeholder years, confirm with Manoj</span>',
     story: 'Grew up in that same family, trekked those same routes for years, then founded Manali Hikers in 1998. Trained through ABVIMAS — from the foundations up to Advanced and Method-of-Instruction level — and has since summited ten peaks between 6,000 and 6,500 metres, training every guide on the team to that same standard.',
     link: 'See our routes →',
     img: 'Photos/manoj-about-us-real.jpg'
