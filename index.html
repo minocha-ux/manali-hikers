@@ -211,11 +211,37 @@
   <section class="routes section-pad" id="routes">
     <div class="wrap">
       <div class="routes-head reveal">
-        <p class="eyebrow">Signature Routes</p>
+        <p class="eyebrow">The Full Catalogue</p>
         <h2>Routes worth the altitude.</h2>
-        <p>A deliberately short list. Every trip is planned around your dates and group — solo, private, or small-group — led by ABVIMAS-trained guides, with acclimatisation days built around real weather, not a fixed itinerary. Priced by conversation, not by catalogue.</p>
+        <p>Every trip is planned around your dates and group — solo, private, or small-group — led by ABVIMAS-trained guides, with acclimatisation days built around real weather, not a fixed itinerary. Priced by conversation, not by catalogue.</p>
+        <p class="routes-addon">Also arranged on request: skiing at Solang &amp; Hamta, white-water rafting on the Beas, and paragliding at Solang Valley.</p>
       </div>
+      <div class="route-pills" id="routePills"><!-- injected by JS --></div>
       <div class="route-grid" id="routeGrid"><!-- injected by JS --></div>
+    </div>
+  </section>
+
+  <!-- ===================== SAMPLE ITINERARY ===================== -->
+  <section class="itinerary section-pad" id="itinerary">
+    <div class="wrap">
+      <div class="itinerary-head reveal">
+        <div>
+          <p class="eyebrow">Proof Of Depth</p>
+          <h2>A route, <em>day by day.</em></h2>
+        </div>
+        <select id="itineraryPicker" class="itinerary-picker"><!-- injected by JS --></select>
+      </div>
+      <div class="itinerary-body reveal">
+        <div class="itinerary-day-tabs" id="itineraryDayTabs"><!-- injected by JS --></div>
+        <div class="itinerary-detail">
+          <div class="itinerary-detail-meta">
+            <span class="eyebrow" id="itDay"></span>
+            <span class="itinerary-elevation" id="itElevation"></span>
+          </div>
+          <h3 id="itTitle"></h3>
+          <p id="itDesc"></p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -239,6 +265,7 @@
           <p class="eyebrow">Plan Your Trip</p>
           <h2>Tell us <em>where you want to stand.</em></h2>
           <p>A real conversation with the office in Manali — your dates, fitness and the season, matched to the right route. No booking engine, no fixed departures.</p>
+          <p class="plan-hiring">We also arrange trekking guide hire, local transport and car rental, and tour guide hire across Himachal, Ladakh and Jammu &amp; Kashmir — ask when you enquire.</p>
           <div class="plan-contact">
             <span class="lbl">WhatsApp / Phone</span>
             <a href="https://wa.me/919418204521" target="_blank" rel="noopener">+91 94182 04521</a>
