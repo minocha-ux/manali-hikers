@@ -65,32 +65,16 @@
     </div>
   </section>
 
-  <!-- ===================== STORY + LINEAGE — one continuous beat ===================== -->
+  <!-- ===================== STORY + FOUNDER — one tight section ===================== -->
   <section class="story section-pad" id="story">
-    <div class="wrap">
-      <div class="story-grid">
-        <div class="story-copy reveal">
-          <p class="eyebrow">Our Story</p>
-          <h2>Trail knowledge <em>passed down,</em> not looked up.</h2>
-          <p>Manoj Kumar's family are <strong>Khampa</strong> — Buddhist nomads who traced many of the Himalayan passes we still cross today, long before they had names on any map. Every trip we run still carries that inherited knowledge of the mountains.</p>
-        </div>
-        <div class="story-visual reveal">
-          <div class="photo-frame">
-            <img src="Photos/IMG_3290.jpeg" alt="The Himalaya above Manali" />
-            <span class="photo-tag">Our backyard — Himachal &amp; Ladakh</span>
-          </div>
-        </div>
+    <div class="wrap" id="lineage">
+      <div class="story-intro reveal">
+        <p class="eyebrow">Our Story · The Family</p>
+        <h2>Trail knowledge <em>passed down,</em> not looked up.</h2>
+        <p class="story-lead">Manoj Kumar's family are <strong>Khampa</strong> — Buddhist nomads who traced many of the Himalayan passes we still cross today, long before they had names on any map. From those nomadic herders to a certified mountaineer leading guests over the same passes now, it is one continuous line — and every trip still carries that inherited knowledge of the mountains.</p>
       </div>
 
-      <div class="lineage-inner" id="lineage">
-        <div class="lineage-head reveal">
-          <div>
-            <p class="eyebrow">The Trail Lineage</p>
-            <h2>One family, <em>the same passes.</em></h2>
-          </div>
-          <p class="lineage-intro">From nomadic herders who first crossed these ridgelines, to a certified mountaineer leading guests over them today.</p>
-        </div>
-
+      <div class="lineage-inner">
         <div class="timeline">
           <div class="timeline-track" id="track">
             <div class="timeline-line"></div>
@@ -131,30 +115,6 @@
       </div>
       <div class="route-pills reveal" id="routePills"><!-- jump-nav injected by JS --></div>
       <div class="route-bands" id="routeBands"><!-- category bands injected by JS --></div>
-    </div>
-  </section>
-
-  <!-- ===================== SAMPLE ITINERARY ===================== -->
-  <section class="itinerary section-pad" id="itinerary">
-    <div class="wrap">
-      <div class="itinerary-head reveal">
-        <div>
-          <p class="eyebrow">Proof Of Depth</p>
-          <h2>A route, <em>day by day.</em></h2>
-        </div>
-        <select id="itineraryPicker" class="itinerary-picker"><!-- injected by JS --></select>
-      </div>
-      <div class="itinerary-body reveal">
-        <div class="itinerary-day-tabs" id="itineraryDayTabs"><!-- injected by JS --></div>
-        <div class="itinerary-detail">
-          <div class="itinerary-detail-meta">
-            <span class="eyebrow" id="itDay"></span>
-            <span class="itinerary-elevation" id="itElevation"></span>
-          </div>
-          <h3 id="itTitle"></h3>
-          <p id="itDesc"></p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -243,6 +203,31 @@
       </div>
     </div>
   </footer>
+
+  <!-- ===================== ROUTE ITINERARY MODAL ===================== -->
+  <div class="modal-overlay" id="routeModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+      <div class="modal-head">
+        <p class="eyebrow" id="modalRegion"></p>
+        <h3 id="modalTitle"></h3>
+        <div class="modal-meta" id="modalMeta"></div>
+      </div>
+      <div class="itinerary-day-tabs" id="modalDayTabs"><!-- injected by JS --></div>
+      <div class="itinerary-detail modal-detail" id="modalDetail">
+        <div class="itinerary-detail-meta">
+          <span class="eyebrow" id="mDay"></span>
+          <span class="itinerary-elevation" id="mElevation"></span>
+        </div>
+        <h4 id="mTitle"></h4>
+        <p id="mDesc"></p>
+      </div>
+      <p class="modal-no-itin" id="modalNoItin">A full day-by-day plan for this route is built around your dates and season — enquire and we'll share it.</p>
+      <div class="modal-foot">
+        <a class="btn btn-gold" href="#plan" id="modalEnquire">Enquire about this route →</a>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

@@ -128,8 +128,7 @@ lineage.forEach((g, i) => {
   el.innerHTML = `
     <div class="gen-dot"></div>
     <div class="gen-era">${g.era.split(' · ')[0]}</div>
-    <div class="gen-name">${g.name}</div>
-    <div class="gen-pass">${g.pass}</div>`;
+    <div class="gen-name">${g.name}</div>`;
   el.addEventListener('click', () => selectGen(i));
   track.appendChild(el);
 });
@@ -162,8 +161,9 @@ const bandDefs = [
 ];
 
 function routeCardHTML(r) {
+  const nameAttr = r.name.replace(/"/g, '&quot;');
   return `
-    <a class="route-card" href="#plan">
+    <div class="route-card">
       <div class="route-img">
         <div class="route-badges">
           ${r.diff ? `<span class="badge badge-diff">${r.diff}</span>` : ''}
@@ -178,12 +178,13 @@ function routeCardHTML(r) {
           <span>⏱ ${r.duration}</span>
           ${r.alt ? `<span>▲ ${r.alt}</span>` : ''}
         </div>
+        <span class="route-price">By <em>enquiry</em></span>
         <div class="route-foot">
-          <span class="route-price">By <em>enquiry</em></span>
-          <span class="route-view">Enquire →</span>
+          <button type="button" class="route-btn route-show" data-route="${nameAttr}">Show the route</button>
+          <a class="route-btn route-enquire" href="#plan">Enquire →</a>
         </div>
       </div>
-    </a>`;
+    </div>`;
 }
 
 function gridHTML(list) {
@@ -239,6 +240,14 @@ const itineraries = {
     { day: 10, title: 'Mardh to Plachak via Thamsar Pass', elevation: 4878, desc: 'Steep ascent over moraine, scree and glacier to Thamsar Pass — the trek\'s highest point — with first views of the lush Kangra valley, then a long descent to Plachak.' },
     { day: 11, title: 'Plachak to Rajgundha', elevation: 2440, desc: 'The easiest day of the trek: flat pine forest walking with views over the open Kangra valley.' },
     { day: 12, title: 'Rajgundha to Billing', elevation: 2310, desc: 'Easy walk through pine forest to Billing, end of the trek — vehicle transfer to Bir or Dharamshala.' }
+  ],
+  'Beas Kund Trek': [
+    { day: 1, title: 'Manali', elevation: 2050, desc: 'Arrival, then Hidimba temple, old Manali and the Vashisht hot-spring village.' },
+    { day: 2, title: 'Manali to Solang to Dhundi to Bakarthach', elevation: 3300, desc: 'Drive to Solang Nallah and Dhundi, then walk to Bakarthach — base of the surrounding peaks (Shetidhar, Ladakhi, Friendship, Hanuman Tibba).' },
+    { day: 3, title: 'Bakarthach to Beas Kund', elevation: 3650, desc: 'A gradual ascent over moraine to the small glacial lake at Beas Kund, the birthplace of the Beas river.' },
+    { day: 4, title: 'Beas Kund', elevation: 3650, desc: 'An easy exploration walk around the lake and back to camp.' },
+    { day: 5, title: 'Beas Kund to Manali', elevation: 2050, desc: 'Trek down to Dhundi and drive to Manali.' },
+    { day: 6, title: 'Manali — departure', elevation: 2050, desc: 'Transfer for onward journey.' }
   ],
   'Hamta Pass Crossing': [
     { day: 1, title: 'Delhi to Manali', elevation: 1960, desc: 'Overnight train then drive from Anandpur Sahib to Manali.' },
@@ -574,48 +583,69 @@ const itineraries = {
   ]
 };
 
-/* ---------- Build the itinerary viewer ---------- */
-const itineraryNames = Object.keys(itineraries);
-const itineraryPicker = document.getElementById('itineraryPicker');
-let activeItinerary = itineraryNames[0];
-let activeItineraryDay = 0;
+/* ---------- Route itinerary modal ----------
+   Each route card's "Show the route" opens this popup with the day-by-day,
+   so a visitor can inspect an itinerary without scrolling off to a section. */
+const modal = document.getElementById('routeModal');
+const modalDayTabs = document.getElementById('modalDayTabs');
+const modalDetail = document.getElementById('modalDetail');
+const modalNoItin = document.getElementById('modalNoItin');
+let modalDays = [];
+let modalActiveDay = 0;
 
-itineraryNames.forEach(name => {
-  const opt = document.createElement('option');
-  opt.value = name;
-  opt.textContent = name;
-  itineraryPicker.appendChild(opt);
-});
-
-function renderItineraryDays() {
-  const days = itineraries[activeItinerary];
-  const tabsEl = document.getElementById('itineraryDayTabs');
-  tabsEl.innerHTML = '';
-  days.forEach((d, i) => {
+function renderModalDays() {
+  modalDayTabs.innerHTML = '';
+  modalDays.forEach((d, i) => {
     const tab = document.createElement('button');
     tab.type = 'button';
-    tab.className = 'day-tab' + (i === activeItineraryDay ? ' active' : '');
+    tab.className = 'day-tab' + (i === modalActiveDay ? ' active' : '');
     tab.textContent = 'DAY ' + d.day;
-    tab.addEventListener('click', () => { activeItineraryDay = i; renderItineraryDays(); renderItineraryDetail(); });
-    tabsEl.appendChild(tab);
+    tab.addEventListener('click', () => { modalActiveDay = i; renderModalDays(); });
+    modalDayTabs.appendChild(tab);
   });
-  renderItineraryDetail();
+  const d = modalDays[modalActiveDay];
+  document.getElementById('mDay').textContent = 'DAY ' + d.day;
+  document.getElementById('mElevation').textContent = d.elevation ? d.elevation + 'm' : '';
+  document.getElementById('mTitle').textContent = d.title;
+  document.getElementById('mDesc').textContent = d.desc;
 }
 
-function renderItineraryDetail() {
-  const d = itineraries[activeItinerary][activeItineraryDay];
-  document.getElementById('itDay').textContent = 'DAY ' + d.day;
-  document.getElementById('itElevation').textContent = d.elevation ? d.elevation + 'm' : '';
-  document.getElementById('itTitle').textContent = d.title;
-  document.getElementById('itDesc').textContent = d.desc;
+function openRouteModal(name) {
+  const r = routes.find(x => x.name === name);
+  if (!r) return;
+  document.getElementById('modalRegion').textContent = r.category + (r.region ? ' · ' + r.region : '');
+  document.getElementById('modalTitle').textContent = r.name;
+  const meta = [];
+  if (r.duration) meta.push('⏱ ' + r.duration);
+  if (r.alt) meta.push('▲ ' + r.alt);
+  if (r.diff) meta.push(r.diff);
+  document.getElementById('modalMeta').textContent = meta.join('    ·    ');
+  modalDays = itineraries[name] || [];
+  modalActiveDay = 0;
+  const hasDays = modalDays.length > 0;
+  modalDayTabs.style.display = hasDays ? '' : 'none';
+  modalDetail.style.display = hasDays ? '' : 'none';
+  modalNoItin.style.display = hasDays ? 'none' : '';
+  if (hasDays) renderModalDays();
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
 }
 
-itineraryPicker.addEventListener('change', () => {
-  activeItinerary = itineraryPicker.value;
-  activeItineraryDay = 0;
-  renderItineraryDays();
+function closeRouteModal() {
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+bandsEl.addEventListener('click', (e) => {
+  const btn = e.target.closest('.route-show');
+  if (btn) { e.preventDefault(); openRouteModal(btn.getAttribute('data-route')); }
 });
-renderItineraryDays();
+document.getElementById('modalClose').addEventListener('click', closeRouteModal);
+modal.addEventListener('click', (e) => { if (e.target === modal) closeRouteModal(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('open')) closeRouteModal(); });
+document.getElementById('modalEnquire').addEventListener('click', closeRouteModal);
 
 /* ---------- Nav scroll state ---------- */
 const nav = document.getElementById('nav');
