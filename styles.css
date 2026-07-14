@@ -216,11 +216,16 @@ img { max-width: 100%; display: block; }
    STORY
    ============================================================ */
 .story { background: var(--ink); }
-/* Compact founder intro — one lead block, not a two-column photo split */
-.story-intro { max-width: 62ch; margin-bottom: clamp(40px, 5vw, 64px); }
-.story-intro h2 { font-size: clamp(30px, 3.6vw, 48px); margin: 16px 0 22px; max-width: 18ch; }
+/* Compact founder header — headline and lead side by side, so the whole
+   founder story (intro + timeline + detail) fits close to a single screen. */
+.story { padding-top: clamp(40px, 4vw, 56px); padding-bottom: clamp(40px, 4vw, 56px); }
+.story-intro {
+  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 64px);
+  align-items: end; margin-bottom: clamp(26px, 3vw, 36px);
+}
+.story-intro h2 { font-size: clamp(28px, 3.2vw, 42px); margin: 10px 0 0; max-width: 15ch; }
 .story-intro h2 em { color: var(--terracotta); }
-.story-lead { color: rgba(245, 242, 235, 0.74); font-size: 16.5px; line-height: 1.7; }
+.story-lead { color: rgba(245, 242, 235, 0.74); font-size: 16px; line-height: 1.65; }
 .photo-frame {
   position: relative; border-radius: 3px; overflow: hidden;
   aspect-ratio: 4/3; background: var(--ink);
@@ -248,7 +253,7 @@ img { max-width: 100%; display: block; }
 }
 .timeline-track::-webkit-scrollbar { display: none; }
 .timeline-line {
-  position: absolute; top: 60px; left: 0; right: 0; height: 1px;
+  position: absolute; top: 30px; left: 0; right: 0; height: 1px;
   background: rgba(244,239,230,0.18);
 }
 .gen {
@@ -259,7 +264,7 @@ img { max-width: 100%; display: block; }
 .gen-dot {
   width: 16px; height: 16px; border-radius: 50%;
   background: var(--ink); border: 2px solid rgba(244,239,230,0.4);
-  position: relative; top: 52px; margin-bottom: 68px;
+  position: relative; top: 22px; margin-bottom: 34px;
   transition: all 0.4s var(--ease);
 }
 .gen.active .gen-dot { background: var(--gold); border-color: var(--gold); transform: scale(1.35); box-shadow: 0 0 0 6px rgba(201,154,68,0.15); }
@@ -274,23 +279,23 @@ img { max-width: 100%; display: block; }
 .gen.active .gen-pass { color: rgba(244,239,230,0.85); }
 
 .gen-detail {
-  margin-top: 48px; border-top: 1px solid rgba(244,239,230,0.14);
-  padding-top: 44px;
-  display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px; align-items: center;
+  margin-top: 30px; border-top: 1px solid rgba(244,239,230,0.14);
+  padding-top: 30px;
+  display: grid; grid-template-columns: 1.15fr 1fr; gap: 44px; align-items: center;
 }
-.gen-detail-meta .eyebrow { color: var(--gold); margin-bottom: 14px; display: block; }
-.gen-detail h3 { font-size: clamp(26px, 3vw, 38px); margin-bottom: 8px; }
-.gen-detail .gen-detail-pass { font-size: 14px; color: var(--gold); letter-spacing: 0.04em; margin-bottom: 22px; }
-.gen-detail p { color: rgba(244,239,230,0.82); font-size: 17px; line-height: 1.7; margin-bottom: 26px; }
+.gen-detail-meta .eyebrow { color: var(--gold); margin-bottom: 10px; display: block; }
+.gen-detail h3 { font-size: clamp(24px, 2.6vw, 32px); margin-bottom: 8px; }
+.gen-detail .gen-detail-pass { font-size: 13.5px; color: var(--gold); letter-spacing: 0.04em; margin-bottom: 16px; }
+.gen-detail p { color: rgba(244,239,230,0.82); font-size: 16px; line-height: 1.65; margin-bottom: 18px; }
 .gen-detail .route-link {
   font-size: 14px; font-weight: 600; color: var(--cream); text-decoration: none;
   border-bottom: 1px solid var(--gold); padding-bottom: 3px;
   transition: color 0.3s;
 }
 .gen-detail .route-link:hover { color: var(--gold); }
-.gen-photo { aspect-ratio: 16/10; border-radius: 3px; overflow: hidden; background: #0f1b14; position: relative; }
+.gen-photo { aspect-ratio: 3/2; max-height: 240px; border-radius: 3px; overflow: hidden; background: #0f1b14; position: relative; }
 .gen-photo svg { width: 100%; height: 100%; }
-.gen-hint { font-size: 12px; color: var(--stone-soft); margin-top: 22px; letter-spacing: 0.04em; }
+.gen-hint { font-size: 12px; color: var(--stone-soft); margin-top: 14px; letter-spacing: 0.04em; }
 
 /* ============================================================
    ROUTES
@@ -498,8 +503,9 @@ img { max-width: 100%; display: block; }
   .trust-grid { grid-template-columns: repeat(2, 1fr); }
   .trust-item:nth-child(2) { border-right: none; }
   .trust-item:nth-child(1), .trust-item:nth-child(2) { border-bottom: 1px solid rgba(244,239,230,0.1); }
+  .story-intro { grid-template-columns: 1fr; gap: 18px; align-items: start; }
   .gen-detail { grid-template-columns: 1fr; gap: 28px; }
-  .gen-photo { order: -1; }
+  .gen-photo { order: -1; max-height: 260px; }
   .route-grid { grid-template-columns: 1fr 1fr; }
   .plan-grid { grid-template-columns: 1fr; }
   .footer-top { grid-template-columns: 1fr; gap: 30px; }
