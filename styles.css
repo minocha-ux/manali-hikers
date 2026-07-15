@@ -111,6 +111,12 @@ img { max-width: 100%; display: block; }
 }
 .nav-logo .mark { color: var(--gold); font-style: italic; }
 .nav.scrolled .nav-logo { color: var(--cream); text-shadow: none; }
+/* Logo image (top-left). For a seamless blend, supply a TRANSPARENT-background
+   PNG; an opaque one will show a faint dark box against the nav. */
+.nav-logo { display: inline-flex; align-items: center; }
+.nav-logo-img { height: 48px; width: auto; display: block; transition: height 0.45s var(--ease); }
+.nav.scrolled .nav-logo-img { height: 38px; }
+@media (max-width: 560px) { .nav-logo-img { height: 40px; } }
 .nav-links { display: flex; align-items: center; gap: 34px; }
 .nav-links a {
   font-size: 13.5px; font-weight: 600; letter-spacing: 0.02em;
@@ -121,6 +127,65 @@ img { max-width: 100%; display: block; }
 .nav-links a:hover { color: var(--gold); }
 .nav.scrolled .nav-links a { color: rgba(245,242,235,0.85); text-shadow: none; }
 .nav.scrolled .nav-links a:hover { color: var(--gold); }
+
+/* ---------- Routes dropdown (click, not hover) ---------- */
+.nav-dropdown { position: relative; }
+.nav-drop-toggle {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 13.5px; font-weight: 600; letter-spacing: 0.02em;
+  color: rgba(245,242,235,0.92); text-shadow: 0 1px 12px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.8);
+  background: transparent; border: none; padding: 0; margin: 0;
+  cursor: pointer; transition: color 0.3s var(--ease);
+}
+.nav-drop-toggle:hover { color: var(--gold); }
+.nav.scrolled .nav-drop-toggle { color: rgba(245,242,235,0.85); text-shadow: none; }
+.nav.scrolled .nav-drop-toggle:hover { color: var(--gold); }
+.nav-drop-toggle .caret { display: inline-block; font-size: 11px; transition: transform 0.3s var(--ease); }
+.nav-drop-toggle[aria-expanded="true"] .caret { transform: rotate(180deg); }
+.nav-drop-menu {
+  position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%);
+  min-width: 220px; background: var(--ink-card); border: 1px solid var(--line);
+  border-radius: 3px; padding: 8px 0; box-shadow: 0 20px 44px -18px rgba(0,0,0,0.65);
+  display: none; z-index: 110;
+}
+.nav-drop-menu.open { display: block; }
+.nav-drop-menu a {
+  display: block; padding: 10px 18px;
+  font-family: 'Manrope', sans-serif; font-size: 13.5px; font-weight: 600;
+  color: rgba(245,242,235,0.8); text-decoration: none; text-shadow: none;
+  transition: color 0.25s var(--ease), background 0.25s var(--ease);
+}
+.nav-drop-menu a:hover { color: var(--gold); background: rgba(212,175,55,0.08); }
+.nav-drop-all { border-top: 1px solid var(--line); margin-top: 6px; padding-top: 12px !important; color: var(--gold) !important; font-weight: 700 !important; }
+
+/* ---------- Routes mega-menu (two panels: categories | route list) ---------- */
+.nav-drop-menu.nav-mega { padding: 0; min-width: 0; left: unset !important; right: 0 !important; transform: none !important; }
+.nav-drop-menu.nav-mega.open { display: flex; }
+.nav-mega-cats { flex: 0 0 200px; padding: 12px 0; border-right: 1px solid var(--line); }
+.nav-cat {
+  display: block; width: 100%; text-align: left;
+  font-family: 'Manrope', sans-serif; font-size: 13.5px; font-weight: 600; letter-spacing: 0.02em;
+  color: rgba(245,242,235,0.8); background: transparent; border: none; cursor: pointer;
+  padding: 10px 20px; text-shadow: none;
+  transition: color 0.25s var(--ease), background 0.25s var(--ease);
+}
+.nav-cat:hover, .nav-cat.active { color: var(--gold); background: rgba(212,175,55,0.08); }
+.nav-mega-routes {
+  flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 2px 20px;
+  align-content: start; padding: 16px 22px; min-width: 380px; max-height: 340px; overflow-y: auto;
+}
+.nav-mega-routes::-webkit-scrollbar { width: 5px; }
+.nav-mega-routes::-webkit-scrollbar-thumb { background: var(--stone-soft); border-radius: 4px; }
+.nav-mega-route { display: block; padding: 8px 0 !important; }
+.nav-mega-route:hover { background: transparent !important; }
+.nav-mega-route-name {
+  display: block; font-family: 'Newsreader', serif; font-size: 15px; font-weight: 500;
+  color: var(--cream); transition: color 0.25s var(--ease);
+}
+.nav-mega-route:hover .nav-mega-route-name { color: var(--gold); }
+.nav-mega-route-meta { display: block; font-family: 'Manrope', sans-serif; font-size: 11px; color: var(--stone); margin-top: 1px; }
+
 .nav-cta {
   font-size: 13px !important; font-weight: 700 !important;
   padding: 9px 18px; border: 1px solid rgba(245,242,235,0.4);
@@ -305,6 +370,7 @@ img { max-width: 100%; display: block; }
 .routes-head h2 { font-size: clamp(30px, 4vw, 52px); margin: 16px 0 20px; }
 .routes-head p { color: rgba(245, 242, 235, 0.72); font-size: 16.5px; }
 .routes-addon { font-size: 14px; color: var(--stone); font-style: italic; margin-top: 14px; }
+.routes-more { text-align: center; margin-top: clamp(36px, 5vw, 56px); }
 
 .route-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; position: sticky; top: 64px; z-index: 20; padding: 12px 0; background: linear-gradient(180deg, var(--ink) 72%, transparent); }
 .route-pill {
@@ -364,59 +430,6 @@ img { max-width: 100%; display: block; }
 .route-show:hover { border-color: var(--gold); color: var(--gold); background: rgba(212,175,55,0.06); }
 .route-enquire { background: var(--gold); color: var(--ink); border-color: var(--gold); display: flex; align-items: center; justify-content: center; }
 .route-enquire:hover { background: #eac552; }
-
-/* ============================================================
-   ITINERARY UI (day tabs + detail) — reused inside the route modal
-   ============================================================ */
-.itinerary-day-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
-.day-tab {
-  font-family: 'Manrope', sans-serif; font-size: 12.5px; font-weight: 700; letter-spacing: 0.04em;
-  color: var(--stone); background: var(--ink); border: 1px solid var(--line);
-  border-radius: 2px; padding: 9px 14px; cursor: pointer; transition: all 0.3s var(--ease);
-}
-.day-tab:hover { color: var(--cream); border-color: rgba(212,175,55,0.4); }
-.day-tab.active { background: var(--gold); border-color: var(--gold); color: var(--ink); }
-.itinerary-detail {
-  background: var(--ink); border: 1px solid var(--line); border-radius: 4px;
-  padding: clamp(22px, 3vw, 32px);
-}
-.itinerary-detail-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-.itinerary-detail-meta .eyebrow { color: var(--gold); }
-.itinerary-elevation { font-family: 'Newsreader', serif; font-size: 20px; color: var(--gold); }
-.itinerary-detail h4 { font-family: 'Newsreader', serif; font-weight: 500; font-size: clamp(20px, 2.4vw, 27px); margin-bottom: 12px; color: var(--cream); }
-.itinerary-detail p { color: rgba(244,239,230,0.82); font-size: 16px; line-height: 1.7; }
-
-/* ============================================================
-   ROUTE ITINERARY MODAL
-   ============================================================ */
-.modal-overlay {
-  position: fixed; inset: 0; z-index: 200;
-  display: none; align-items: flex-start; justify-content: center;
-  background: rgba(6, 10, 8, 0.78); backdrop-filter: blur(6px);
-  padding: clamp(16px, 5vh, 64px) 16px; overflow-y: auto;
-}
-.modal-overlay.open { display: flex; }
-.modal {
-  position: relative; width: 100%; max-width: 720px;
-  background: var(--ink-card); border: 1px solid var(--line); border-radius: 6px;
-  padding: clamp(24px, 4vw, 44px);
-  box-shadow: 0 30px 80px -20px rgba(0,0,0,0.7);
-  animation: modalIn 0.35s var(--ease);
-}
-@keyframes modalIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
-.modal-close {
-  position: absolute; top: 14px; right: 16px; z-index: 3;
-  background: transparent; border: none; color: var(--stone); font-size: 30px; line-height: 1;
-  cursor: pointer; padding: 4px 8px; transition: color 0.3s;
-}
-.modal-close:hover { color: var(--cream); }
-.modal-head { margin-bottom: 24px; padding-right: 30px; }
-.modal-head .eyebrow { color: var(--terracotta); }
-.modal-head h3 { font-family: 'Newsreader', serif; font-weight: 500; font-size: clamp(24px, 3.4vw, 36px); color: var(--cream); margin: 8px 0 10px; }
-.modal-meta { font-size: 13.5px; color: var(--stone); letter-spacing: 0.02em; }
-.modal-no-itin { color: rgba(244,239,230,0.8); font-size: 16px; line-height: 1.7; background: var(--ink); border: 1px solid var(--line); border-radius: 4px; padding: clamp(22px, 3vw, 32px); }
-.modal-foot { margin-top: 24px; }
-.modal-foot .btn { width: 100%; justify-content: center; }
 
 /* ============================================================
    TESTIMONIAL

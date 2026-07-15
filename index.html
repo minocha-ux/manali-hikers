@@ -8,18 +8,32 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=1.0.1" />
 </head>
 <body>
 
   <!-- ===================== NAV ===================== -->
   <nav class="nav" id="nav">
-    <a href="#top" class="nav-logo">Manali <span class="mark">Hikers</span></a>
+    <a href="#top" class="nav-logo" aria-label="Manali Hikers — home">
+      <img src="Photos/manali-hikers-logo.png" alt="Manali Hikers" class="nav-logo-img" />
+    </a>
     <div class="nav-links">
       <a href="#story">Our Story</a>
-      <a href="#lineage">The Lineage</a>
-      <a href="#routes">Routes</a>
-      <a href="#plan">Plan a Trip</a>
+      <div class="nav-dropdown">
+        <button type="button" class="nav-drop-toggle" id="routesToggle" aria-expanded="false" aria-haspopup="true">Routes <span class="caret">▾</span></button>
+        <div class="nav-drop-menu nav-mega" id="routesMenu">
+          <div class="nav-mega-cats" id="navMegaCats">
+            <button type="button" class="nav-cat" data-cat="Trekking">Trekking</button>
+            <button type="button" class="nav-cat" data-cat="Expeditions">Expeditions</button>
+            <button type="button" class="nav-cat" data-cat="Jeep Safari">Jeep Safari</button>
+            <button type="button" class="nav-cat" data-cat="Mountain Biking">Mountain Biking</button>
+            <button type="button" class="nav-cat" data-cat="Camps">Camps</button>
+            <button type="button" class="nav-cat" data-cat="Culture Tours">Culture Tours</button>
+            <a class="nav-drop-all" href="routes.html">All routes →</a>
+          </div>
+          <div class="nav-mega-routes" id="navMegaRoutes"><!-- populated by nav.js --></div>
+        </div>
+      </div>
       <a href="#plan" class="nav-cta">Enquire</a>
     </div>
     <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -27,9 +41,8 @@
 
   <div class="mobile-drawer" id="drawer">
     <a href="#story">Our Story</a>
-    <a href="#lineage">The Lineage</a>
-    <a href="#routes">Routes</a>
-    <a href="#plan">Plan a Trip</a>
+    <a href="routes.html">Routes</a>
+    <a href="#plan">Enquire</a>
   </div>
 
   <!-- ===================== HERO ===================== -->
@@ -110,13 +123,15 @@
   <section class="routes section-pad" id="routes">
     <div class="wrap">
       <div class="routes-head reveal">
-        <p class="eyebrow">The Full Catalogue</p>
+        <p class="eyebrow">Signature Routes</p>
         <h2>Routes worth the altitude.</h2>
         <p>Every trip is planned around your dates and group — solo, private, or small-group — led by ABVIMAS-trained guides, with acclimatisation days built around real weather, not a fixed itinerary. Priced by conversation, not by catalogue.</p>
         <p class="routes-addon">Also arranged on request: skiing at Solang &amp; Hamta, white-water rafting on the Beas, and paragliding at Solang Valley.</p>
       </div>
-      <div class="route-pills reveal" id="routePills"><!-- jump-nav injected by JS --></div>
-      <div class="route-bands" id="routeBands"><!-- category bands injected by JS --></div>
+      <div class="route-grid reveal" id="featuredRoutes"><!-- 6 featured route cards injected by JS --></div>
+      <div class="routes-more reveal">
+        <a href="routes.html" class="btn btn-outline">View all 34 routes →</a>
+      </div>
     </div>
   </section>
 
@@ -188,9 +203,8 @@
         <div class="footer-col">
           <h4>Explore</h4>
           <a href="#story">Our Story</a>
-          <a href="#lineage">The Lineage</a>
-          <a href="#routes">Routes</a>
-          <a href="#plan">Plan a Trip</a>
+          <a href="routes.html">Routes</a>
+          <a href="#plan">Enquire</a>
         </div>
         <div class="footer-col">
           <h4>Contact</h4>
@@ -206,31 +220,8 @@
     </div>
   </footer>
 
-  <!-- ===================== ROUTE ITINERARY MODAL ===================== -->
-  <div class="modal-overlay" id="routeModal" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
-      <div class="modal-head">
-        <p class="eyebrow" id="modalRegion"></p>
-        <h3 id="modalTitle"></h3>
-        <div class="modal-meta" id="modalMeta"></div>
-      </div>
-      <div class="itinerary-day-tabs" id="modalDayTabs"><!-- injected by JS --></div>
-      <div class="itinerary-detail modal-detail" id="modalDetail">
-        <div class="itinerary-detail-meta">
-          <span class="eyebrow" id="mDay"></span>
-          <span class="itinerary-elevation" id="mElevation"></span>
-        </div>
-        <h4 id="mTitle"></h4>
-        <p id="mDesc"></p>
-      </div>
-      <p class="modal-no-itin" id="modalNoItin">A full day-by-day plan for this route is built around your dates and season — enquire and we'll share it.</p>
-      <div class="modal-foot">
-        <a class="btn btn-gold" href="#plan" id="modalEnquire">Enquire about this route →</a>
-      </div>
-    </div>
-  </div>
-
+  <script src="data.js"></script>
+  <script src="nav.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

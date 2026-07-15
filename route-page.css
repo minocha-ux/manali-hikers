@@ -1,0 +1,147 @@
+/* ============================================================
+   route-page.css — styles for routes.html and routes/<slug>.html
+   New markup only (prefixed `rp-`); reuses styles.css variables
+   and existing shared classes (.route-card, .route-pill, .btn, …)
+   ============================================================ */
+
+/* ---------- routes.html page header ---------- */
+.routes-head-wrap { padding-top: clamp(96px, 11vw, 124px); padding-bottom: clamp(32px, 4vw, 48px); }
+
+/* ---------- Hero — full-bleed photo from the very top, breadcrumb + title
+   overlaid so there's no black gap above the image ---------- */
+.rp-hero {
+  position: relative;
+  min-height: clamp(420px, 60vw, 600px);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  overflow: hidden;
+  color: var(--cream);
+}
+.rp-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.rp-hero-scrim {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(6,10,8,0.6) 0%, rgba(6,10,8,0.25) 30%, rgba(6,10,8,0.55) 62%, rgba(6,10,8,0.92) 100%);
+}
+/* Breadcrumb pinned to the top of the hero, clearing the fixed nav */
+.rp-breadcrumb {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 2;
+  padding-top: clamp(84px, 10vw, 104px);
+  font-size: 13px; letter-spacing: 0.02em; color: rgba(245,242,235,0.82);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+.rp-breadcrumb a { color: rgba(245,242,235,0.82); text-decoration: none; transition: color 0.3s var(--ease); }
+.rp-breadcrumb a:hover { color: var(--gold); }
+.rp-breadcrumb span { color: var(--cream); }
+.rp-hero-inner {
+  position: relative; z-index: 2;
+  padding-bottom: clamp(28px, 4vw, 48px);
+}
+.rp-hero-inner .eyebrow {
+  display: block; margin-bottom: 14px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.9), 0 2px 18px rgba(0,0,0,0.7);
+}
+.rp-hero-inner h1 {
+  font-size: clamp(32px, 5.4vw, 62px);
+  line-height: 1.06;
+  max-width: 20ch;
+  margin-bottom: 22px;
+  color: var(--cream);
+  text-shadow: 0 4px 30px rgba(0,0,0,0.5), 0 1px 4px rgba(0,0,0,0.55);
+}
+.rp-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.rp-chip {
+  font-family: 'Manrope', sans-serif;
+  font-size: 12.5px; font-weight: 600; letter-spacing: 0.02em;
+  color: var(--cream);
+  background: rgba(12, 16, 14, 0.6);
+  border: 1px solid rgba(245,242,235,0.22);
+  backdrop-filter: blur(6px);
+  padding: 8px 14px;
+  border-radius: 20px;
+}
+.rp-chip-heritage { background: rgba(200, 111, 70, 0.85); border-color: transparent; }
+
+/* ---------- Tighter vertical rhythm on route pages (less scrolling) ---------- */
+.rp-overview, .rp-itinerary, .rp-cta, .rp-related {
+  padding-top: clamp(38px, 4.5vw, 60px);
+  padding-bottom: clamp(38px, 4.5vw, 60px);
+}
+
+/* ---------- Overview ---------- */
+.rp-overview { background: var(--ink); }
+.rp-overview-col { max-width: 68ch; }
+.rp-overview-col .eyebrow { display: block; margin-bottom: 16px; }
+.rp-overview-col p {
+  font-family: 'Newsreader', serif;
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.6;
+  color: rgba(245,242,235,0.88);
+}
+
+/* ---------- Itinerary ---------- */
+.rp-itinerary { background: var(--ink-soft); }
+.rp-days {
+  border-left: 1px solid var(--line);
+  padding-left: 28px;
+  margin-left: 5px;
+  max-width: 76ch;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.rp-day { position: relative; padding: 18px 0; border-bottom: 1px solid rgba(245,242,235,0.07); }
+.rp-day:first-child { padding-top: 2px; }
+.rp-day:last-child { border-bottom: none; padding-bottom: 2px; }
+.rp-day::before {
+  content: '';
+  position: absolute; left: -33px; top: 24px;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--ink-card); border: 2px solid var(--stone-soft);
+}
+.rp-day:first-child::before { top: 8px; background: var(--gold); border-color: var(--gold); }
+.rp-day-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
+.rp-day-num {
+  font-family: 'Manrope', sans-serif; font-size: 11.5px; font-weight: 800;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold);
+}
+.rp-day-elev { font-family: 'Newsreader', serif; font-size: 15px; color: var(--stone); white-space: nowrap; }
+.rp-day h4 { font-family: 'Newsreader', serif; font-weight: 500; font-size: 21px; color: var(--cream); margin-bottom: 6px; line-height: 1.3; }
+.rp-day p { font-size: 15px; line-height: 1.65; color: rgba(244,239,230,0.74); max-width: 62ch; }
+
+.rp-no-itin {
+  color: rgba(244,239,230,0.82); font-size: 16.5px; line-height: 1.7;
+  background: var(--ink-card); border: 1px solid var(--line); border-radius: 4px;
+  padding: clamp(24px, 3vw, 36px);
+  max-width: 62ch;
+}
+
+/* ---------- Enquire CTA block ---------- */
+.rp-cta { background: var(--ink); text-align: center; }
+.rp-cta h3 {
+  font-size: clamp(26px, 3.4vw, 40px);
+  color: var(--cream);
+  max-width: 20ch;
+  margin: 0 auto 28px;
+}
+.rp-cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+/* ---------- Catalogue (routes.html) — shorter card images so 34 routes
+   scroll less; tighter band rhythm ---------- */
+.routes-head-wrap .route-img { aspect-ratio: 16/10; }
+.routes-head-wrap .route-band { margin-top: clamp(40px, 5vw, 60px); }
+
+/* ---------- Related routes ---------- */
+.rp-related { background: var(--ink-soft); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .rp-days { padding-left: 22px; }
+  .rp-day::before { left: -27px; }
+}
+
+@media (max-width: 560px) {
+  .rp-hero { height: clamp(320px, 80vw, 440px); }
+  .rp-chips { gap: 8px; }
+  .rp-chip { font-size: 11.5px; padding: 7px 12px; }
+  .rp-cta-actions { flex-direction: column; align-items: stretch; }
+  .rp-cta-actions .btn { justify-content: center; }
+}
